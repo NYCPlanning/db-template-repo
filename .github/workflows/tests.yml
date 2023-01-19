@@ -1,0 +1,17 @@
+name: Build tests
+
+on:
+  push:
+    paths:
+      - "**.sh"
+      - "**.toml"
+      - "**.yml"
+
+jobs:
+  test:
+    runs-on: ubuntu-20.04
+    container: osgeo/gdal:ubuntu-small-3.2.1
+    env:
+    steps:
+    - uses: actions/checkout@v2
+    
