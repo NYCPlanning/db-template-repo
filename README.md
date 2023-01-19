@@ -1,2 +1,2 @@
-# db-pluto-zola
-PLUTO with monthly zoning data updates for ZoLa
+# PLUTO with 
+PLUTO with monthly zoning data updates for use in ZoLa portal
