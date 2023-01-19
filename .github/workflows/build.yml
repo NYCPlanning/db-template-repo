@@ -1,0 +1,23 @@
+name: 🏗️ Data Build
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  build:
+    if: >- 
+      contains(github.event.issue.title, '[databuild]')
+    name: Build
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: load input data
+        run: |
+          echo "running load input data"
+      - name: build dataset
+        run: |
+          echo "running build dataset"
+      - name: export qaqc
+        run: |
+          echo "running export qaqc"
