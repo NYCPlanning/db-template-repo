@@ -26,8 +26,8 @@ jobs:
     - name: black linter
       run: black --diff --check ./
   
-  test:
-    name: test
+  pr_tests:
+    name: PR tests
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
