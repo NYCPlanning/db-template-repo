@@ -1,18 +1,15 @@
-name: Build tests
+name: Branch tests
 
 on:
   push:
     branches: ["main"]
   pull_request:
     branches: ["main"]
-    # paths:
-    #   - "**.sh"
-    #   - "**.py"
   workflow_dispatch:
 
 jobs:
-  lint:
-    name: lint
+  branch_lint:
+    name: Branch lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -26,8 +23,8 @@ jobs:
       - name: black linter
         run: black --diff --check ./
 
-  pr_tests:
-    name: PR tests
+  branch_tests:
+    name: Branch tests
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
