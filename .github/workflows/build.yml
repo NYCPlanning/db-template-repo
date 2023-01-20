@@ -18,7 +18,6 @@ jobs:
       - name: load input data
         run: |
           echo "running load input data"
-          echo "./bash/01_dataloading.sh"
 
       - name: build dataset
         run: |
