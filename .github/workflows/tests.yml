@@ -15,17 +15,17 @@ jobs:
     name: lint
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-python@v2
-      with:
-        python-version: "3.9"
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: "3.9"
 
-    - name: setup
-    - run: pip install black==22.8.0
+      - name: setup
+        run: pip install black==22.8.0
 
-    - name: black linter
-      run: black --diff --check ./
-  
+      - name: black linter
+        run: black --diff --check ./
+
   pr_tests:
     name: PR tests
     runs-on: ubuntu-20.04
