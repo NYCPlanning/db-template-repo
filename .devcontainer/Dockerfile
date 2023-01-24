@@ -19,5 +19,10 @@ ENV PATH "$PATH:/root/.local/bin/"
 
 COPY poetry.lock pyproject.toml ./
 
-RUN poetry config virtualenvs.create false \
-  && poetry install --no-interaction --no-ansi
+RUN poetry install --no-interaction --no-ansi
+
+# # Hide virtual env prompt
+# ENV VIRTUAL_ENV_DISABLE_PROMPT 1
+
+# # Start virtual env when bash starts
+# RUN echo 'source /var/my-venv/bin/activate' >> ~/.bashrc
