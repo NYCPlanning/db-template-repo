@@ -41,19 +41,10 @@ jobs:
         # with:
         #   subFolder: /home/runner/work/db-pluto-zola
 
-      - name: confirm poetry python packages
+      - name: confirm python packages (pip)
         run: |
           pip list
+
+      - name: confirm python packages (poetry)
+        run: |
           poetry show
-
-  # branch_tests_with_dockercompose:
-  #   runs-on: ubuntu-20.04
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     - name: Start containers
-  #       run: docker-compose -f "docker-compose.yml" up -d --build
-
-  #     - name: confirm poetry python packages
-  #       run: |
-  #         pip list
-  #         poetry show
