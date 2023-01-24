@@ -21,8 +21,11 @@ COPY poetry.lock pyproject.toml ./
 
 RUN poetry install --no-interaction --no-ansi
 
-# # Hide virtual env prompt
-# ENV VIRTUAL_ENV_DISABLE_PROMPT 1
+# Provide a known path for the virtual environment by creating a symlink
+RUN ln -s $(poetry env info --path) /var/dev-poetry-venv
 
-# # Start virtual env when bash starts
-# RUN echo 'source /var/my-venv/bin/activate' >> ~/.bashrc
+# Hide virtual env prompt
+ENV VIRTUAL_ENV_DISABLE_PROMPT 1
+
+# Start virtual env when bash starts
+RUN echo 'source /var/dev-poetry-venv/bin/activate' >> ~/.bashrc
