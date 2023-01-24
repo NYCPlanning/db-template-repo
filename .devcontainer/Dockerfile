@@ -15,6 +15,8 @@ ENV POETRY_VERSION=1.3.2
 
 RUN pip install "poetry==$POETRY_VERSION"
 
+ENV PATH "$PATH:/root/.local/bin/"
+
 COPY poetry.lock pyproject.toml ./
 
 RUN poetry config virtualenvs.create false \
