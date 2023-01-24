@@ -23,8 +23,8 @@ jobs:
       - name: black linter
         run: black --diff --check ./
 
-  branch_tests:
-    name: Branch tests
+  some_unit_tests:
+    name: Some unit tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
