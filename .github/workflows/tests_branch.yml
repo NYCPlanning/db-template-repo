@@ -37,6 +37,8 @@ jobs:
     steps:
       - name: Build and run dev container task
         uses: devcontainers/ci@v0.2
+        with:
+          subFolder: /
 
       - name: confirm poetry python packages
         run: |
