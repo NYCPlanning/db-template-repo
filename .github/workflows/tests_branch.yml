@@ -9,7 +9,7 @@ on:
 
 jobs:
   branch_lint:
-    name: Branch lint
+    name: Linting tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -24,7 +24,7 @@ jobs:
         run: black --diff --check ./
 
   some_unit_tests:
-    name: Some unit tests
+    name: Unit tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -41,7 +41,7 @@ jobs:
 
       - name: check path
         run: |
-          ehco "$PATH"
+          echo "$PATH"
 
       - name: confirm python packages (pip)
         run: |
