@@ -38,7 +38,7 @@ jobs:
       - name: Build and run dev container task
         uses: devcontainers/ci@v0.2
         with:
-          subFolder: /
+          subFolder: /home/runner/work/db-pluto-zola
 
       - name: confirm poetry python packages
         run: |
