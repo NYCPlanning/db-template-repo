@@ -31,3 +31,26 @@ jobs:
       - name: some tests
         run: |
           echo "running tests"
+
+  branch_tests_with_devcontainer:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build and run dev container task
+        uses: devcontainers/ci@v0.2
+
+      - name: confirm poetry python packages
+        run: |
+          pip list
+          poetry show
+
+  # branch_tests_with_dockercompose:
+  #   runs-on: ubuntu-20.04
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - name: Start containers
+  #       run: docker-compose -f "docker-compose.yml" up -d --build
+
+  #     - name: confirm poetry python packages
+  #       run: |
+  #         pip list
+  #         poetry show
