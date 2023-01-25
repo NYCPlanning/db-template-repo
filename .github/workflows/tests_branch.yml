@@ -37,16 +37,30 @@ jobs:
 
   branch_tests_with_devcontainer:
     runs-on: ubuntu-latest
+    container: nycplanning/library:ubuntu-latest
     steps:
       - name: checkout
         uses: actions/checkout@v3
 
-      - name: start containers
-        run: docker-compose -f ".devcontainer/docker-compose.yml" up -d --build
+      # - name: setup python
+      #   uses: actions/setup-python@v4.5.0
+      #   with:
+      #     python-version: "3.9"
 
-      - name: check running containers
-        run: |
-          docker ps -a
+      # - name: setup poetry image
+      #   uses: abatilo/actions-poetry@v2
+      #   with:
+      #     poetry-version: "1.3.2"
+
+      - name: View poetry --help
+        run: poetry --help
+
+      # - name: start containers
+      #   run: docker-compose --file ".devcontainer/docker-compose.yml" up --detach --build
+
+      # - name: check running containers
+      #   run: |
+      #     docker ps --all
 
       - name: check path
         run: |
