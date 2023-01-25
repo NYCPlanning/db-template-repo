@@ -1,7 +1,7 @@
 ---
-name: Build
+name: Build dataset
 about: Use this issue template to create a dataset release
-title: "[databuild] {{ put timestamp here, e.g. 2020 July Release }}"
+title: "Data Build: {{ dataset name}} {{ dataset version, e.g. 2020 July Release }}"
 labels: 'data build'
 assignees: ''
 ---
