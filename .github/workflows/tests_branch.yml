@@ -35,9 +35,9 @@ jobs:
         run: |
           echo "running tests"
 
-  branch_tests_with_devcontainer:
+  branch_tests_with_container:
     runs-on: ubuntu-latest
-    container: nycplanning/library:ubuntu-latest
+    container: nycplanning/library:ubuntu-staging
     steps:
       - name: checkout
         uses: actions/checkout@v3
