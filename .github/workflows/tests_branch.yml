@@ -41,14 +41,12 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
 
-      - name: build and run dev container task
-        uses: devcontainers/ci@v0.2
-        with:
-          runCmd: |
-            pip list
+      - name: start containers
+        run: docker-compose -f ".devcontainer/docker-compose.yml" up -d --build
 
-      # - name: start containers
-      #   run: docker-compose -f ".devcontainer/docker-compose.yml" up -d --build
+      - name: check running containers
+        run: |
+          docker ps -a
 
       - name: check path
         run: |
