@@ -15,14 +15,14 @@ jobs:
         run: |
           echo "running config"
 
-      - name: load input data
+      - name: data loading
         run: |
-          echo "running load input data"
+          echo "running data loading"
 
-      - name: build dataset
+      - name: dataset build
         run: |
           echo "running build dataset"
 
-      - name: export qaqc
+      - name: qaqc export
         run: |
-          echo "running export qaqc"
+          echo "running qaqc export"
