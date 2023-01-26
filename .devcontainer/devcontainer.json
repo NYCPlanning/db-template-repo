@@ -10,7 +10,6 @@
 			"extensions": [
 				"redhat.vscode-yaml",
 				"bierner.markdown-preview-github-styles",
-				"me-dutour-mathieu.vscode-github-actions",
 				"bungcip.better-toml",
 				"cschleiden.vscode-github-actions"
 			]
