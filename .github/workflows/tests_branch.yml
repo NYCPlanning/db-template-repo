@@ -1,0 +1,36 @@
+name: Branch tests
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  branch_lint:
+    name: Linting tests
+    runs-on: ubuntu-20.04
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: setup python
+        uses: actions/setup-python@v4.5.0
+        with:
+          python-version: "3.11.1"
+
+      - name: setup
+        run: pip install black==22.8.0
+
+      - name: black linter
+        run: black --diff --check ./
+
+  some_unit_tests:
+    name: Unit tests
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - name: some tests
+        run: |
+          echo "running tests"
