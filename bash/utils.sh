@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Set Environmental Variables 
+# Function to set Environmental Variables 
 function set_env {
   for envfile in $@
   do
@@ -11,7 +11,7 @@ function set_env {
   done
 }
 
-# Parsing database url
+# Function to parse the database url
 function urlparse {
     proto="$(echo $1 | grep :// | sed -e's,^\(.*://\).*,\1,g')"
     url=$(echo $1 | sed -e s,$proto,,g)
@@ -24,7 +24,7 @@ function urlparse {
     BUILD_DB="$(echo $url | grep / | cut -d/ -f2-)"
 }
 
-# Set authorization levels for each dataset (public read vs private)
+# Function to get authorization levels for each dataset (public read vs private)
 function get_acl {
   local name=$1
   local version=${2:-latest} #default version to latest
@@ -37,7 +37,7 @@ function get_acl {
   fi
 }
 
-# Getting version of dataset from Digital Ocean EDM Recipes and print out version in terminal
+# Function to get version of dataset from Digital Ocean EDM Recipes
 function get_version {
   local name=$1
   local version=${2:-latest} #default version to latest
@@ -52,7 +52,7 @@ function get_version {
   echo "$version"
 }
 
-# TODO add function description
+# Function to update a datset's version record
 function record_version {
   local datasource="$1"
   local version="$2"
@@ -62,7 +62,7 @@ function record_version {
   "
 }
 
-# Fucntion that checks if the data has already been loaded into the build engine 
+# Fucntion to check if the data has already been loaded into the database 
 function get_existence {
   local name=$1
   local version=${2:-latest} #default version to latest
@@ -80,7 +80,7 @@ function get_existence {
   echo $existence
 }
 
-# Function that imports data directly from Digital Ocean i.e. key function of dataloadinn
+# Function to import data directly from Digital Ocean i.e. key function of dataloading
 function import {
   local name=$1
   local version=${2:-latest} #default version to latest
