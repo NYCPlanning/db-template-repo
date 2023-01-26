@@ -10,7 +10,7 @@ on:
 jobs:
   branch_lint:
     name: Linting tests
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - name: checkout
         uses: actions/checkout@v3
@@ -28,7 +28,7 @@ jobs:
 
   some_unit_tests:
     name: Unit tests
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
       - name: some tests
