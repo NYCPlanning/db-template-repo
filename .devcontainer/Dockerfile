@@ -12,9 +12,16 @@ ENV POETRY_VERSION=1.3.2
 # RUN pip3 --disable-pip-version-check --no-cache-dir install -r /tmp/pip-tmp/requirements.txt \
 #    && rm -rf /tmp/pip-tmp
 
-# [Optional] Uncomment this section to install additional OS packages.
-# RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-#     && apt-get -y install --no-install-recommends <your-package-list-here>
+# Updating linux repo list and setting non interactive terminal 
+RUN apt-get update && export DEBIAN_FRONTEND=noninteractive 
+
+# Install postgresql client to use psql (postgresql alias)
+RUN apt-get -y install --no-install-recommends postgresql-client
+
+#Install minio
+RUN curl -O https://dl.min.io/client/mc/release/linux-amd64/mc\
+    && chmod +x mc\
+    && sudo mv ./mc /usr/bin
 
 RUN pip install "poetry==$POETRY_VERSION"
 
