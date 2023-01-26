@@ -15,6 +15,6 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
 
-      - name: some tests
+      - name: 1. Data Loading
         run: |
-          echo "running tests"
+          ./01_dataloading
