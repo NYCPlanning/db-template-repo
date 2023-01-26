@@ -29,6 +29,9 @@ function urlparse {
 
 urlparse $BUILD_ENGINE
 
+# Add an S3-compatible service to the MinIO configuration with alias "spaces"
+mc config host add spaces $AWS_S3_ENDPOINT $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY --api S3v4
+
 # Set authorization levels for each dataset (public read vs private)
 function get_acl {
   local name=$1
