@@ -1,5 +1,6 @@
-# [Choice] Python version: 3, 3.9, 3.8, 3.7, 3.6
-ARG VARIANT="3.9"
+# See here for image contents: https://github.com/devcontainers/images/tree/main/src/python
+
+ARG VARIANT="3"
 FROM mcr.microsoft.com/devcontainers/python:0-${VARIANT}
 
 ENV PYTHONUNBUFFERED 1
@@ -19,7 +20,8 @@ RUN pip install "poetry==$POETRY_VERSION"
 
 ENV PATH "$PATH:/root/.local/bin/"
 
-COPY poetry.lock pyproject.toml ./
+# COPY poetry.lock pyproject.toml ./
+COPY pyproject.toml ./
 
 RUN poetry install --no-interaction --no-ansi
 
