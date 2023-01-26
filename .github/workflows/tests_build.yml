@@ -18,4 +18,5 @@ jobs:
       - name: 1. Data Loading
         run: |
           echo "$PWD"
+          ls
           ./bash/01_dataloading
