@@ -15,9 +15,15 @@
 			]
 		}
 	},
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [
+		5432
+	],
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "pip install --user -r requirements.txt",
 	// "postCreateCommand": "poetry install"
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "export PATH=/root/.local/bin:$PATH ",
 	// Adding id_rsa so that we can push to github from the dev container
 	"initializeCommand": "ssh-add $HOME/.ssh/id_rsa",
 	// Features to add to the dev container. More info: https://containers.dev/features.
