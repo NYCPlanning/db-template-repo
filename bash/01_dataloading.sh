@@ -1,6 +1,4 @@
 #!/bin/bash
-# Exit when any command fails
-set -e
 source bash/config.sh
 
 # Run postgres with less output and create a table of versions by dataset
