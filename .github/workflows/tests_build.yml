@@ -15,6 +15,10 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
 
-      - name: 1. Data Loading
+      - name: 1. Data Loading [PLACEHOLDER]
         run: |
-          ./bash/01_dataloading.sh
+          echo "running data loading ..."
+
+      - name: 2. Build [PLACEHOLDER]
+        run: |
+          echo "running build ..."
