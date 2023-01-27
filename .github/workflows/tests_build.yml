@@ -1,0 +1,24 @@
+name: Dataset Build tests
+
+on:
+  push:
+    branches: ["main", "dev"]
+  pull_request:
+    branches: ["main", "dev"]
+  workflow_dispatch:
+
+jobs:
+  build_tests:
+    name: Build tests
+    runs-on: ubuntu-20.04
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: 1. Data Loading [PLACEHOLDER]
+        run: |
+          echo "running data loading ..."
+
+      - name: 2. Build [PLACEHOLDER]
+        run: |
+          echo "running build ..."
