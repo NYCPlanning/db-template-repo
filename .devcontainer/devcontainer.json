@@ -3,7 +3,7 @@
 {
 	"name": "db-pluto-zola (Python 3, PostgreSQL)",
 	"dockerComposeFile": "docker-compose.yml",
-	"service": "app",
+	"service": "runner",
 	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 	"customizations": {
 		"vscode": {
