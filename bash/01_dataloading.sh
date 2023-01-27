@@ -23,4 +23,5 @@ import dcp_zoningdistricts &
 import dcp_zoningmapindex &
 wait
 
-rm -rf .library
+# # Delete data cache
+# rm -rf .library
