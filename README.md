@@ -2,19 +2,31 @@
 PLUTO with monthly zoning data updates for use in ZoLa portal
 
 ### Inputs
-- [MapPLUTO](https://www.nyc.gov/site/planning/data-maps/open-data/dwn-pluto-mappluto.page#mappluto) (the version of PLUTO with spatial data)
+- [MapPLUTO](https://www.nyc.gov/site/planning/data-maps/open-data/dwn-pluto-mappluto.page#mappluto), which is the version of PLUTO with spatial data (e.g. 22v3)
 - [NYC GIS Zoning Features](https://www.nyc.gov/site/planning/data-maps/open-data/dwn-gis-zoning.page), which are the spatial datasets delineating the boundaries between zoning districts, commercial overlays, special purpose districts etc.
+    - dcp_zoningdistricts
+    - dcp_commercialoverlay
+    - dcp_specialpurposesubdistricts
+    - dcp_specialpurpose
+    - dcp_limitedheight
+    - dcp_zoningmapamendments
+    - dcp_zoningmapindex
 
 ### Build Logic
-- The build process to create PLUTO+ on a monthly basis should be the same as the Zoning Tax Lot database build process, which involves opening issues to kick off builds.  The goal will be to have the GIS team build PLUTO+ each month.  The GIS team, who builds the Zoning Tax Lot database each month, likes this approach to building data products and finds it easy to use.
-- Logic to assign zoning information to a tax lot can be found in [this series of scripts](https://github.com/NYCPlanning/db-pluto/blob/main/pluto_build/02_build.sh#L68).
-- I reference the Zoning Tax Lot Database because in essence we could copy this repo and change the input dataset from `dof_dtm` to `MapPLUTO` and have a good launching point.  The logic to assign zoning information to a tax lot is the same in Zoning Tax Lot Database and PLUTO.  The Zoning Tax Lot Database repo is smaller and easier to navigate because Zoning Tax Lot Database is a smaller and simpler dataset, so it could be a good reference. Zoning Tax Lot Database is not an input because the scale of the tax lots are different (Billing for MapPLUTO and Base for Zoning Tax Lot Database - see [slide 8 here](https://docs.google.com/presentation/d/1eOW5tkurOQjwS-AiZSfKyfpafOcgZYjWbGmn34-dHIA/edit?usp=sharing)).
+* TODO
+> The build process to create PLUTO+ on a monthly basis should be the same as the Zoning Tax Lot database build process, which involves opening issues to kick off builds.  The goal will be to have the GIS team build PLUTO+ each month.  The GIS team, who builds the Zoning Tax Lot database each month, likes this approach to building data products and finds it easy to use.
+
+> Logic to assign zoning information to a tax lot can be found in [this series of scripts](https://github.com/NYCPlanning/db-pluto/blob/main/pluto_build/02_build.sh#L68).
+
+> I reference the Zoning Tax Lot Database because in essence we could copy this repo and change the input dataset from `dof_dtm` to `MapPLUTO` and have a good launching point.  The logic to assign zoning information to a tax lot is the same in Zoning Tax Lot Database and PLUTO.  The Zoning Tax Lot Database repo is smaller and easier to navigate because Zoning Tax Lot Database is a smaller and simpler dataset, so it could be a good reference. Zoning Tax Lot Database is not an input because the scale of the tax lots are different (Billing for MapPLUTO and Base for Zoning Tax Lot Database - see [slide 8 here](https://docs.google.com/presentation/d/1eOW5tkurOQjwS-AiZSfKyfpafOcgZYjWbGmn34-dHIA/edit?usp=sharing)).
 
 ### Outputs
-- Outputs should be the same as [existing PLUTO outputs](https://github.com/NYCPlanning/db-pluto#main-files) with updated versioning convention.  We’re outputting all of PLUTO, and in the build process we’re just updating the zoning information.  The current PLUTO publishing method works well for the GIS team, who is responsible for publishing PLUTO to Bytes, Open Data, etc.  There are opportunities to explore change to and improve the current publishing workflow, but this may be out of scope for this initial build.
+- MapPLUTO realease with minor version increments (e.g. 22v3.1)
+> Outputs should be the same as [existing PLUTO outputs](https://github.com/NYCPlanning/db-pluto#main-files) with updated versioning convention.  We’re outputting all of PLUTO, and in the build process we’re just updating the zoning information.  The current PLUTO publishing method works well for the GIS team, who is responsible for publishing PLUTO to Bytes, Open Data, etc.  There are opportunities to explore change to and improve the current publishing workflow, but this may be out of scope for this initial build.
 
 ### QAQC
-- A series of QAQC processes should be conducted with each build of PLUTO+.  These QAQC reports should confirm that nothing but the information in the zoning fields has changed compared to the root PLUTO input dataset (i.e. didn’t drop records, change geospatial information, etc.).  It is worth exploring how the PLUTO+ QAQC dataset can be linked to the Zoning Tax Lot QAQC process to avoid near duplicative QAQC processes. 
+* TODO
+> A series of QAQC processes should be conducted with each build of PLUTO+.  These QAQC reports should confirm that nothing but the information in the zoning fields has changed compared to the root PLUTO input dataset (i.e. didn’t drop records, change geospatial information, etc.).  It is worth exploring how the PLUTO+ QAQC dataset can be linked to the Zoning Tax Lot QAQC process to avoid near duplicative QAQC processes. 
 
 ## Development
 1. Clone repo
@@ -24,7 +36,7 @@ PLUTO with monthly zoning data updates for use in ZoLa portal
 3. Confirm setup is working by running a script via dev container terminal (e.g. `./bash/config.sh`)
 
 4. Open and merge branches to `dev` before `main`
-
+---
 ## Approach
 - Use the Zoning Tax Lot database
     - The scale of the tax lots in the Zoning Tax Lot database is at the base bbl level whereas the scale of the tax lots in PLUTO is the billing bbl level.  Therefore, there is not a one-to-one match between records in the Zoning Tax Lot database and PLUTO.  Additionally, the spatial data in the Zoning Tax Lot database is updated monthly, while the spatial data in PLUTO is updated with each update, so if zoning data is applied to new, split, or merged lots and these changes are not yet reflected in PLUTO the zoning data would be incorrectly represented.
