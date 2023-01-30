@@ -1,5 +1,19 @@
-# PLUTO Plus
-PLUTO with monthly zoning data updates for use in ZoLa portal
+# PLUTO+
+PLUTO and MapPLUTO with monthly zoning data updates for use in ZoLa portal
+
+### Latest output files
+Type | Shapefile | FileGDB | CSV
+-- | -- | -- | --
+Clipped | [Mappluto]() | NA 
+Unclipped (Water Included) | [Mappluto_unclipped]() |  NA
+No Geometry |  NA | NA  | [Pluto.csv]()
+
+### Additional resources:
++ [DOF BBL Council export]()
++ [PLUTO Corrections]()
++ [Source Data Versions]()
+
+---
 
 ### Inputs
 - [MapPLUTO](https://www.nyc.gov/site/planning/data-maps/open-data/dwn-pluto-mappluto.page#mappluto), which is the version of PLUTO with spatial data (e.g. 22v3)
@@ -13,9 +27,9 @@ PLUTO with monthly zoning data updates for use in ZoLa portal
     - dcp_zoningmapindex
 
 ### Build Logic
-1. Load input datasets from DigitalOcean to SQL database
+1. Load input datasets from `edm-recipes` DigitalOcean bucket to a Postgres database
 2. ...
-3. Publish outputs to DigitalOcean in a versioned and, if appropriate, `latest` directory
+3. Publish outputs to `edm-publishing` DigitalOcean bucket in a versioned and, if appropriate, `latest` directory
 > The build process to create PLUTO+ on a monthly basis should be the same as the Zoning Tax Lot database build process, which involves opening issues to kick off builds.  The goal will be to have the GIS team build PLUTO+ each month.  The GIS team, who builds the Zoning Tax Lot database each month, likes this approach to building data products and finds it easy to use.
 
 > Logic to assign zoning information to a tax lot can be found in [this series of scripts](https://github.com/NYCPlanning/db-pluto/blob/main/pluto_build/02_build.sh#L68).
