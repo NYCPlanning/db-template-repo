@@ -1,7 +1,7 @@
 # PLUTO+
 PLUTO and MapPLUTO with monthly zoning data updates for use in ZoLa portal
 
-### Latest output files
+### Latest output files [LINKS ARE WIP]
 Type | Shapefile | FileGDB | CSV
 -- | -- | -- | --
 Clipped | [Mappluto]() | NA 
