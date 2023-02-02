@@ -9,7 +9,7 @@ on:
 
 jobs:
   branch_lint:
-    name: Linting tests
+    name: Linting tests (python files)
     runs-on: ubuntu-20.04
     steps:
       - name: checkout
@@ -26,11 +26,11 @@ jobs:
       - name: black linter
         run: black --diff --check ./
 
-  some_unit_tests:
+  branch_unit_tests:
     name: Unit tests
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
-      - name: some tests
+      - name: some tests [PLACEHOLDER]
         run: |
-          echo "running tests"
+          echo "running tests ..."

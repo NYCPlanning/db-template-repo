@@ -1,4 +1,4 @@
-name: Dataset Build tests
+name: Data Build tests
 
 on:
   push:
