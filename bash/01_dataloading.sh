@@ -1,7 +1,7 @@
 #!/bin/bash
 source bash/config.sh
 
-# Run postgres with less output and create a table of versions by dataset
+# Create a versions table with source dataset versions
 psql $BUILD_ENGINE --quiet --command "
   DROP TABLE IF EXISTS versions;
   CREATE TABLE versions ( 
@@ -10,18 +10,8 @@ psql $BUILD_ENGINE --quiet --command "
   );
 "
 
-#Import Data
+# Import data
 import dcp_mappluto_wi &
-
-# Import GIS Features
-import dcp_commercialoverlay &
-import dcp_limitedheight &
-import dcp_specialpurpose &
-import dcp_specialpurposesubdistricts &
-import dcp_zoningmapamendments &
-import dcp_zoningdistricts &
-import dcp_zoningmapindex &
-wait
 
 # # Delete data cache
 # rm -rf .library
