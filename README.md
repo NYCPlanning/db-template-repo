@@ -4,25 +4,24 @@ Dataset Name is a datatset used by X for Y and Z.
 ## Latest output files
 Type | Shapefile | FileGDB | CSV
 -- | -- | -- | --
-Clipped | [dataset_name]() | NA 
+Clipped | [dataset_name]() | NA
 Unclipped (Water Included) | [dataset_name_unclipped]() | NA
 No Geometry |  NA | NA  | [dataset_name.csv]()
 
 ## Additional files
 - [Source Data versions]()
-- [Datatset Name corrections]()
 - [Related export]()
 - [Related export]()
 
 ---
 
-### Source data
+## Source data
 - dcp_xxx
 - dcp_yyy
 - dof_xxx
 > [details or table about source data]
 
-### Build logic
+## Build logic
 1. Load input datasets from `edm-recipes` DigitalOcean bucket to a Postgres database
 
 2. ...
@@ -31,12 +30,14 @@ No Geometry |  NA | NA  | [dataset_name.csv]()
 
 > [details about build logic]
 
-### Output files
+## Output files
 - Output files:
 > [details or table about outputs]
 
-### QAQC
+## QAQC
 Please refer to the [EDM QAQC web application](https://edm-data-engineering.nycplanningdigital.com) for cross version comparisons
+
+---
 
 ## Development
 1. Clone repo
@@ -44,13 +45,13 @@ Please refer to the [EDM QAQC web application](https://edm-data-engineering.nycp
 2. Open the repo in a `Remote Window` in VS Code to utilize this repo's dev container
 > Ensure Docker Desktop is running. Start dev container either when prompted or via the green icon at the bottom left).
 
-3. Confirm setup is working by running a script via dev container terminal (e.g. `./bash/config.sh`)
+3. Confirm setup is working by running a script in the dev container terminal (e.g. `./bash/config.sh`)
 
 4. Open and merge branches to `dev` before `main`
 
 ---
 
 ### Approach Motivations
-Details about the purpose of this dataset and why any noteworthy decisions were made.
+Details about the purpose of this dataset and why any noteworthy decisions were made
 
-Details about alternative approaches and why they weren't chosen.
+Details about alternative approaches and why they weren't chosen
