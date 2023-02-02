@@ -1,5 +1,5 @@
 # Dataset Name
-Dataset Name is a datatset used by X for Y and Z.
+Dataset Name is a dataset used by X for Y and Z.
 
 ## Latest output files
 Type | Shapefile | FileGDB | CSV
