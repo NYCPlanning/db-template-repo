@@ -8,14 +8,16 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
+				"streetsidesoftware.code-spell-checker",
 				"bierner.markdown-preview-github-styles",
 				"bierner.markdown-mermaid",
 				"DavidAnson.vscode-markdownlint",
+				"yzhang.markdown-all-in-one",
 				"foxundermoon.shell-format",
 				"redhat.vscode-yaml",
 				"bungcip.better-toml",
-				"mechatroner.rainbow-csv",
-				"streetsidesoftware.code-spell-checker"
+				"bradymholt.pgformatter",
+				"mechatroner.rainbow-csv"
 			]
 		}
 	},
