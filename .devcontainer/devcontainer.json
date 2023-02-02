@@ -1,17 +1,21 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/postgres
 {
-	"name": "db-pluto-zola (Python 3, PostgreSQL)",
+	"name": "db-template-repo (Python 3, PostgreSQL)",
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "runner",
 	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"redhat.vscode-yaml",
 				"bierner.markdown-preview-github-styles",
+				"bierner.markdown-mermaid",
+				"DavidAnson.vscode-markdownlint",
+				"foxundermoon.shell-format",
+				"redhat.vscode-yaml",
 				"bungcip.better-toml",
-				"cschleiden.vscode-github-actions"
+				"mechatroner.rainbow-csv",
+				"streetsidesoftware.code-spell-checker"
 			]
 		}
 	},
