@@ -1,4 +1,5 @@
 #!/bin/bash
+# A collection of utility functions used in build scripts
 
 # Function to set Environmental Variables 
 function set_env {
