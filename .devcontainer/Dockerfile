@@ -1,5 +1,4 @@
-# See here for image contents: https://github.com/devcontainers/images/tree/main/src/python
-
+# See here for base image contents: https://github.com/devcontainers/images/tree/main/src/python
 ARG VARIANT="3"
 FROM mcr.microsoft.com/devcontainers/python:0-${VARIANT}
 
@@ -14,7 +13,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive
 # Install postgresql client to use psql (postgresql alias)
 RUN apt-get -y install --no-install-recommends postgresql-client
 
-#Install minio
+# Install minio
 RUN curl -O https://dl.min.io/client/mc/release/linux-amd64/mc\
     && chmod +x mc\
     && sudo mv ./mc /usr/bin
