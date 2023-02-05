@@ -3,6 +3,7 @@ name: 🏗️ Data Build
 on:
   issues:
     types: [opened]
+  workflow_dispatch:
 
 jobs:
   build:
