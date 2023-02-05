@@ -11,7 +11,7 @@ psql $BUILD_ENGINE --quiet --command "
 "
 
 # Import data
-import dcp_zoningdistricts &
+import dcp_zoningdistricts
 
 # # Delete data cache
 # rm -rf .library
