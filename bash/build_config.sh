@@ -1,5 +1,6 @@
 #!/bin/bash
-# A script used by build scripts to import utility functions, set environment variables, and
+# A script used by build scripts to import utility functions, set environment variables,
+# and configure connections
 
 # Exit when any command fails
 set -e
@@ -8,12 +9,12 @@ trap 'last_command=$current_command; current_command=$BASH_COMMAND' DEBUG
 # Echo an error message before exiting
 trap 'echo "\"${last_command}\" command filed with exit code $?."' EXIT
 
-source bash/utils.sh
+source bash/build_utils.sh
 
-# Set Environmental Variables
+# Set environemnt variables from .env files
 set_env .env version.env
 
-# Parse database url
+# Set environemnt variables from BUILD_ENGINE url
 urlparse $BUILD_ENGINE
 
 # Add an S3-compatible service to the MinIO configuration with alias "spaces"

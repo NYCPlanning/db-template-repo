@@ -10,7 +10,7 @@ function set_env {
   done
 }
 
-# Function to parse the database url
+# Function to parse the database url and set relevant environment variables
 function urlparse {
   proto="$(echo $1 | grep :// | sed -e's,^\(.*://\).*,\1,g')"
   url=$(echo $1 | sed -e s,$proto,,g)

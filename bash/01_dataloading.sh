@@ -1,5 +1,5 @@
 #!/bin/bash
-source bash/config.sh
+source bash/build_config.sh
 
 # Create a versions table with source dataset versions
 psql $BUILD_ENGINE --quiet --command "
@@ -13,5 +13,5 @@ psql $BUILD_ENGINE --quiet --command "
 # Import data
 import dcp_zoningdistricts
 
-# # Delete data cache
-# rm -rf .library
+# Delete data cache (optional)
+rm -rf .library
