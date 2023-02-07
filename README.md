@@ -97,6 +97,8 @@ Please refer to the [EDM QAQC web application](https://edm-data-engineering.nycp
 >
 > Merging `dev` to `main` should be only be done after thorough testing and stakeholder coordination.
 >
+> Only `main` has branch protection rules. This means that tests are allowed to fail on `dev`.
+>
 > If using VS Code's `Format on Save`, ensure the Python formatting provider is set to `black`
 
 ### Approach Motivations
