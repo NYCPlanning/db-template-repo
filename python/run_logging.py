@@ -1,10 +1,13 @@
-# THIS IS A PLACEHOLDER
+import os
 import logging
+
+LOGGING_LEVEL_DEFAULT = "INFO"
+LOGGING_LEVEL = os.environ.get("LOGGING_LEVEL", LOGGING_LEVEL_DEFAULT)
 
 
 def main() -> None:
     logging.basicConfig(
-        level=logging.DEBUG,
+        level=LOGGING_LEVEL,
         format="%(asctime)s %(levelname)s %(message)s",
         datefmt="%Y-%m-%d %H:%M:%S",
     )
