@@ -1,14 +1,30 @@
 name: 🏗️ Data Build
 
 on:
-  issues:
-    types: [opened]
   workflow_dispatch:
+    inputs:
+      build_note:
+        description: "Note about this build"
+        type: string
+        required: false
+      logging_level:
+        description: "Logging level"
+        type: choice
+        required: true
+        options:
+          - WARNING
+          - INFO
+          - DEBUG
+  workflow_call:
+    inputs:
+      logging_level:
+        required: true
+        type: string
+env:
+  LOGGING_LEVEL: ${{ github.event.inputs.logging_level }}
 
 jobs:
   build:
-    if: >-
-      contains(github.event.issue.labels.*.name, 'data build')
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3

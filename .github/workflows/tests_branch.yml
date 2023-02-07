@@ -30,7 +30,22 @@ jobs:
     name: Unit tests
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v3
+      - name: checkout
+        uses: actions/checkout@v3
+
       - name: some tests [PLACEHOLDER]
         run: |
           echo "running tests ..."
+
+  branch_build_tests:
+    name: Build tests
+    runs-on: ubuntu-20.04
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: build test
+        uses: ./.github/workflows/build.yml
+        with:
+          logging_level: DEBUG
+        secrets: inherit
