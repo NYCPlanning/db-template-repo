@@ -2,7 +2,7 @@ import os
 import logging
 
 LOGGING_LEVEL_DEFAULT = "INFO"
-LOGGING_LEVEL = os.environ.get("LOGGING_LEVEL", LOGGING_LEVEL_DEFAULT)
+LOGGING_LEVEL = os.environ.get("INPUT_LOGGING_LEVEL", LOGGING_LEVEL_DEFAULT)
 
 
 def main() -> None:

@@ -20,8 +20,8 @@ on:
       logging_level:
         required: true
         type: string
-env:
-  LOGGING_LEVEL: ${{ github.event.inputs.logging_level }}
+# env:
+#   LOGGING_LEVEL: ${{ github.event.inputs.logging_level }}
 
 jobs:
   build:
@@ -30,6 +30,8 @@ jobs:
       - uses: actions/checkout@v3
       - name: logging
         run: |
+          echo Hello logging level: ${{ inputs.logging_level }} (input)
+          echo Hello logging level: $INPUT_LOGGING_LEVEL (envar)
           python -m python.run_logging
 
       - name: config
@@ -47,3 +49,22 @@ jobs:
       - name: qaqc export
         run: |
           echo "running qaqc export"
+
+      - name: report results in comment
+        if: success()
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          comment-id: ${{ github.event.comment.id }}
+          body: |
+
+            ## Build Complete! 
+
+            <summary> Source Info </summary>
+            <details>
+
+            ${{ steps.report.outputs.report }}
+
+            </details>
+
+            for more details, check https://github.com/NYCPlanning/db-pluto/actions/runs/${{ github.run_id }}
+          reactions: hooray
