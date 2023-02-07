@@ -41,5 +41,5 @@ jobs:
     name: Build tests
     uses: ./.github/workflows/build.yml
     with:
-      logging_level: DEBUG
+      logging_level: "DEBUG"
     secrets: inherit
