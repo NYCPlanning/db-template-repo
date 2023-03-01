@@ -1,6 +1,5 @@
 #!/bin/bash
-# A dev script used to compile and install python packages
-# to be used in a virtual environment or dev container
+# A dev script used to compile python packages from a requirements.in file to a requirements.txt file
 set -e
 
 # UNCOMMENT TO RECOMPILE requirements.txt
@@ -12,6 +11,3 @@ python3 -m pip install --upgrade pip-tools wheel
 rm requirements.txt
 # Compile requirements
 CUSTOM_COMPILE_COMMAND="./bash/dev_python_packages.sh" python3 -m piptools compile --output-file=requirements.txt requirements.in
-
-# Install requirements
-python3 -m pip install --requirement requirements.txt
