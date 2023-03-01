@@ -5,6 +5,7 @@
 function set_env {
   for envfile in $@; do
     if [ -f $envfile ]; then
+      echo "set_env: found $envfile ..."
       export $(cat $envfile | sed 's/#.*//g' | xargs)
     fi
   done
