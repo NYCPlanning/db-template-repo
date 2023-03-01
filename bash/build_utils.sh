@@ -10,6 +10,16 @@ function set_env {
   done
 }
 
+# Function to run a sql command from a string
+function run_sql_command {
+  psql $BUILD_ENGINE --quiet --command $1
+}
+
+# Function to run a sql file
+function run_sql_file {
+  psql $BUILD_ENGINE --set ON_ERROR_STOP=1 --file $1
+}
+
 # Function to parse the database url and set relevant environment variables
 function urlparse {
   proto="$(echo $1 | grep :// | sed -e's,^\(.*://\).*,\1,g')"

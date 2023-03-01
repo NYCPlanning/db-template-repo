@@ -40,12 +40,12 @@ jobs:
 
       - name: data loading
         run: |
-          echo "running data loading"
+          ./bash/01_dataloading.sh
 
       - name: dataset build
         run: |
-          echo "running build dataset"
-
+          ./bash/02_staging.sh
+      # TODO don't export when testing
       - name: qaqc export
         run: |
           echo "running qaqc export"

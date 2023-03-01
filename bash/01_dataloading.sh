@@ -1,8 +1,11 @@
 #!/bin/bash
 source bash/build_config.sh
 
+echo "Dataset Version $VERSION : 01 Data Loading"
+
 # Create a versions table with source dataset versions
-psql $BUILD_ENGINE --quiet --command "
+echo "Create versions table ..."
+run_sql_command "
   DROP TABLE IF EXISTS versions;
   CREATE TABLE versions ( 
     datasource text, 
@@ -11,7 +14,11 @@ psql $BUILD_ENGINE --quiet --command "
 "
 
 # Import data
+echo "Import source data ..."
 import dcp_zoningdistricts
 
-# Delete data cache (optional)
-rm -rf .library
+# # Delete data cache (optional)
+# echo "Deleting source data cache ..."
+# rm -rf .library
+
+echo "Done!"
