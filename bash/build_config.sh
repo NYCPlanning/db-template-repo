@@ -12,7 +12,8 @@ trap 'echo "\"${last_command}\" command filed with exit code $?."' EXIT
 source bash/build_utils.sh
 
 # Set environemnt variables from .env files
-set_env .env version.env
+set_env .env
+set_env version.env
 
 # Set environemnt variables from BUILD_ENGINE url
 urlparse $BUILD_ENGINE
