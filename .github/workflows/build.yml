@@ -31,7 +31,7 @@ jobs:
       - name: logging
         run: |
           echo "Hello logging level: ${{ inputs.logging_level }} (from action input)"
-          echo "Hello logging level: $INPUT_LOGGING_LEVEL (from envar from inputs)"
+          echo "Hello logging level: $LOGGING_LEVEL (from envar from inputs)"
           python -m python.run_logging
 
       - name: config
