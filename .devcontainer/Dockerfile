@@ -9,7 +9,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive
 # Install postgresql client to use psql (postgresql alias)
 RUN apt-get -y install --no-install-recommends postgresql-client
 
-# Install minio
+# Install minio for S3 file I/O
 RUN <<EOF
     curl -O https://dl.min.io/client/mc/release/linux-amd64/mc
     chmod +x mc
