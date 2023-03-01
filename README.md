@@ -91,12 +91,6 @@ Please refer to the [EDM QAQC web application](https://edm-data-engineering.nycp
 
 ### Notes
 
-> If `dev` branch doesn't exist, create it.
->
-> Create new branches from and merge to `dev`.
->
-> Merging `dev` to `main` should be only be done after thorough testing and stakeholder coordination.
->
 > Only `main` has branch protection rules. This means that tests are allowed to fail on `dev`.
 >
 > If using VS Code's `Format on Save`, ensure the Python formatting provider is set to `black`

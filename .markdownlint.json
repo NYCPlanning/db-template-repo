@@ -1,0 +1,6 @@
+// Rule configurations for markdownlint VS Code extenstion
+{
+    "default": true,
+    "MD013": false, // line-length: Line length [Expected: 80; Actual: XXX]
+    "MD024": false // no-duplicate-heading/no-duplicate-header: Multiple headings with the same content
+}
