@@ -19,4 +19,4 @@ set_env version.env
 urlparse $BUILD_ENGINE
 
 # Add an S3-compatible service to the MinIO configuration with alias "spaces"
-mc config host add spaces $AWS_S3_ENDPOINT $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY --api S3v4
+mc config host add spaces $DO_S3_ENDPOINT $DO_ACCESS_KEY_ID $DO_SECRET_ACCESS_KEY --api S3v4

@@ -21,6 +21,9 @@ on:
         required: true
         type: string
 env:
+  DO_S3_ENDPOINT: ${{ secrets.DO_S3_ENDPOINT }}
+  DO_ACCESS_KEY_ID: ${{ secrets.DO_ACCESS_KEY_ID }}
+  DO_SECRET_ACCESS_KEY: ${{ secrets.DO_SECRET_ACCESS_KEY }}
   LOGGING_LEVEL: ${{ inputs.logging_level }}
 
 jobs:
