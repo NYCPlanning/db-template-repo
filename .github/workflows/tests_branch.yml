@@ -34,6 +34,16 @@ jobs:
         run: |
           echo "running tests ..."
 
+  branch_devcontainer_tests:
+    name: Devcontainer tests
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Build and run dev container task
+        uses: devcontainers/ci@v0.3
+        with:
+          # Change this to be your CI task/script
+          runCmd: pip list
+
   branch_build_tests:
     name: Build tests
     uses: ./.github/workflows/build.yml
