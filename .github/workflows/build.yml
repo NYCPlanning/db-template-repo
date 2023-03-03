@@ -21,41 +21,59 @@ on:
         required: true
         type: string
 env:
+  LOGGING_LEVEL: ${{ inputs.logging_level }}
+  BUILD_ENGINE: postgresql://postgres:postgres@localhost:5432/postgres
   DO_S3_ENDPOINT: ${{ secrets.DO_S3_ENDPOINT }}
   DO_ACCESS_KEY_ID: ${{ secrets.DO_ACCESS_KEY_ID }}
   DO_SECRET_ACCESS_KEY: ${{ secrets.DO_SECRET_ACCESS_KEY }}
-  LOGGING_LEVEL: ${{ inputs.logging_level }}
 
 jobs:
   build:
+    name: Build Dataset
     runs-on: ubuntu-20.04
+    services:
+      postgres:
+        image: postgis/postgis:12-3.0-alpine
+        env:
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
     steps:
       - uses: actions/checkout@v3
-      - name: logging
+      - name: Logging check
         run: |
           python --version
-          echo "Hello logging level: ${{ inputs.logging_level }} (from action input)"
-          echo "Hello logging level: $LOGGING_LEVEL (from envar from inputs)"
+          echo "Hello logging level: ${{ inputs.logging_level }} (directly from action inputs)"
+          echo "Hello logging level: $LOGGING_LEVEL (from envar from action inputs)"
           python -m python.run_logging
 
-      - name: setup python
+      - name: Setup python
         uses: actions/setup-python@v4.5.0
         with:
           python-version: "3.11"
 
-      - name: config
+      - name: Setup build environment
         run: |
           python --version
           ./bash/dev_build_env_setup.sh
 
-      - name: data loading
+      - name: 1) Data loading
         run: |
           ./bash/01_dataloading.sh
 
-      - name: dataset build
+      - name: 2) Staging
         run: |
           ./bash/02_staging.sh
-      # TODO don't export when testing
-      - name: qaqc export
+      - name: X) Export for QAQC
         run: |
           echo "running qaqc export"
+
+      # TODO don't do production export when testing
+      - name: X) Export for production
+        run: |
+          echo "running production export"
