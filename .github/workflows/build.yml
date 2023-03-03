@@ -38,8 +38,14 @@ jobs:
           echo "Hello logging level: $LOGGING_LEVEL (from envar from inputs)"
           python -m python.run_logging
 
+      - name: setup python
+        uses: actions/setup-python@v4.5.0
+        with:
+          python-version: "3.11.1"
+
       - name: config
         run: |
+          python --version
           echo "running config"
 
       - name: data loading
