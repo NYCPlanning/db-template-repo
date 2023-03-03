@@ -41,12 +41,12 @@ jobs:
       - name: setup python
         uses: actions/setup-python@v4.5.0
         with:
-          python-version: "3.11.1"
+          python-version: "3.11"
 
       - name: config
         run: |
           python --version
-          echo "running config"
+          ./bash/dev_build_env_setup.sh
 
       - name: data loading
         run: |
