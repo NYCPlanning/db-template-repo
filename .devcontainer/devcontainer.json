@@ -36,7 +36,7 @@
 	// "postCreateCommand": "pip install --user -r requirements.txt",
 	// "postCreateCommand": "poetry install"
 	// "postCreateCommand": "export PATH=/root/.local/bin:$PATH",
-	"postCreateCommand": "./bash/dev_install_python_packages.sh",
+	// "postCreateCommand": "./bash/dev_install_python_packages.sh",
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
 	// Configure tool-specific properties.

@@ -33,6 +33,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: logging
         run: |
+          python --version
           echo "Hello logging level: ${{ inputs.logging_level }} (from action input)"
           echo "Hello logging level: $LOGGING_LEVEL (from envar from inputs)"
           python -m python.run_logging

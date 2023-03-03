@@ -9,9 +9,7 @@ jobs:
     name: Linting tests (python files)
     runs-on: ubuntu-20.04
     steps:
-      - name: checkout
-        uses: actions/checkout@v3
-
+      - uses: actions/checkout@v3
       - name: setup python
         uses: actions/setup-python@v4.5.0
         with:
@@ -27,24 +25,20 @@ jobs:
     name: Unit tests
     runs-on: ubuntu-20.04
     steps:
-      - name: checkout
-        uses: actions/checkout@v3
-
+      - uses: actions/checkout@v3
       - name: some tests [PLACEHOLDER]
         run: |
           echo "running tests ..."
+          # TODO add pytest tests
 
   branch_devcontainer_tests:
     name: Devcontainer tests
     runs-on: ubuntu-20.04
     steps:
-      - name: checkout
-        uses: actions/checkout@v3
-
+      - uses: actions/checkout@v3
       - name: Build and run dev container task
         uses: devcontainers/ci@v0.3
         with:
-          # Change this to be your CI task/script
           runCmd: pip list
 
   branch_build_tests:

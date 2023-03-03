@@ -9,13 +9,6 @@ if __name__ == "__main__":
     old_csv = load_csv_file(
         directory=DATA_DIRECTORY, filename="acs_2010_new_030222.csv"
     )
-    # old_csv = load_csv_file(
-    #     directory=DATA_DIRECTORY, filename="acs_2010_old_030122.csv"
-    # )
-    # old_csv = load_csv_file(
-    #     directory=DATA_DIRECTORY, filename="acs_2010_old_100621.csv"
-    # )
-    # old_csv = load_csv_file(directory=DATA_DIRECTORY, filename="acs_2020.csv")
     new_csv = load_csv_file(directory=DATA_DIRECTORY, filename="acs_2010_new.csv")
 
     print("comparing csvs ...")
