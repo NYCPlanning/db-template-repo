@@ -1,6 +1,6 @@
 ## motivations
 
-- resolves issue [INSERT ISSUE NUMBER]
+- resolves issue #ISSUE_NUMBER
 - ...
 
 ## changes
@@ -10,3 +10,7 @@
 ## notes
 
 - ...
+
+## todo
+
+- [ ] ...
