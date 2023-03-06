@@ -2,7 +2,7 @@ import os
 import logging
 
 LOGGING_LEVEL_DEFAULT = "INFO"
-LOGGING_LEVEL = os.environ.get("INPUT_LOGGING_LEVEL", LOGGING_LEVEL_DEFAULT)
+LOGGING_LEVEL = os.environ.get("LOGGING_LEVEL", LOGGING_LEVEL_DEFAULT)
 
 
 def main() -> None:
@@ -11,7 +11,7 @@ def main() -> None:
         format="%(asctime)s %(levelname)s %(message)s",
         datefmt="%Y-%m-%d %H:%M:%S",
     )
-
+    print(f"Logging Level is {LOGGING_LEVEL}")
     logging.debug("This is a debug message.")
     logging.info("This is an info message.")
     logging.warning("This is a warning message.")
