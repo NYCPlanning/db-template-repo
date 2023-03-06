@@ -1,6 +1,6 @@
 # Dataset Name
 
-Dataset Name is a dataset used by X for Y and Z.
+This repo is a way for the Data Engineering team to work out and declare it's ideal file structures, code styles, and workflows to be used in other repos. This is new and evolving. Nothing here *must* be done in another repo.
 
 ## Latest output files
 
