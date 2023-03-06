@@ -21,7 +21,8 @@ if __name__ == "__main__":
                 {len(new_csv):,} rows in new data
             """
         )
-        print("compare common rows ... TODO")
+        # TODO compare common rows
+        print("compare common rows ...")
     else:
         compare_result = old_csv.compare(new_csv, align_axis=0)
         rows_with_diff_count = len(compare_result) // 2
