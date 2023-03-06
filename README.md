@@ -47,8 +47,6 @@ Please refer to the [EDM QAQC web application](https://edm-data-engineering.nycp
 
 3. Confirm setup is working by running a script in the dev container terminal (e.g. `./bash/config.sh`)
 
-4. Open and merge branches to `dev` before `main`
-
 ---
 
 ### Approach Motivations
