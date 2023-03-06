@@ -66,9 +66,9 @@ jobs:
         run: |
           ./bash/01_dataloading.sh
 
-      - name: 2) Staging
+      - name: 2) Preprocessing
         run: |
-          ./bash/02_staging.sh
+          ./bash/02_preprocessing.sh
 
       - name: X) Export for QAQC
         run: |

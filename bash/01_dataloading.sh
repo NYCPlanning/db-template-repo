@@ -1,9 +1,12 @@
 #!/bin/bash
+#
+# Loads source data files into a local SQL database.
+
 source bash/build_config.sh
 
 echo "Dataset Version $DATASET_VERSION : 01 Data Loading"
 
-# Create a versions table with source dataset versions
+# Create a table with the versions of source data
 echo "Create source data versions table ..."
 run_sql_command "
   DROP TABLE IF EXISTS source_versions;

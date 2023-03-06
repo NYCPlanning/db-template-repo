@@ -9,6 +9,7 @@ SQL_FILE_DIRECTORY = "sql"
 def load_csv_file(directory: str, filename: str) -> pd.DataFrame:
     data = pd.read_csv(f"{directory}/{filename}")
     data.columns = data.columns.str.lower()
+
     return data
 
 

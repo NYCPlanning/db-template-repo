@@ -1,5 +1,6 @@
 #!/bin/bash
-# A collection of utility functions used in build scripts
+#
+# A collection of utility functions used in build scripts.
 
 # Exit when any command fails
 set -e

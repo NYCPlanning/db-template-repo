@@ -5,7 +5,7 @@ LOGGING_LEVEL_DEFAULT = "INFO"
 LOGGING_LEVEL = os.environ.get("LOGGING_LEVEL", LOGGING_LEVEL_DEFAULT)
 
 
-def main() -> None:
+def run_logging() -> None:
     logging.basicConfig(
         level=LOGGING_LEVEL,
         format="%(asctime)s %(levelname)s %(message)s",
@@ -20,4 +20,4 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    run_logging()
