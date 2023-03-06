@@ -13,11 +13,7 @@ trap 'echo "\"${last_command}\" command filed with exit code $?."' EXIT
 function set_env {
   for envfile in $@; do
     if [ -f $envfile ]; then
-      # set -a
-      # source $envfile
-      # set +a
       export $(cat $envfile | sed 's/#.*//g' | xargs)
-      # echo $(cat $envfile | sed 's/#.*//g' | xargs)
     fi
   done
 }
