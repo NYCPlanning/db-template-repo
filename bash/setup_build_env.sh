@@ -1,9 +1,9 @@
 #!/bin/bash
+#
+# Sets up enviroment for running build scripts in either local devcontainer or github action.
 set -e
 
-# Updating
 sudo apt-get update
-# sudo apt install -y curl zip
 
 # Install postgresql client to use psql (postgresql alias)
 sudo apt-get --assume-yes install --no-install-recommends postgresql-client
@@ -14,4 +14,4 @@ chmod +x mc
 sudo mv ./mc /usr/bin
 
 # Install python packages
-source bash/dev_install_python_packages.sh
+source bash/install_python_packages.sh

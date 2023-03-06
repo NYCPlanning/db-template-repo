@@ -6,4 +6,4 @@ RUN export DEBIAN_FRONTEND=noninteractive
 
 # run environment setup script
 COPY . .
-RUN bash/dev_build_env_setup.sh
+RUN bash/setup_build_env.sh

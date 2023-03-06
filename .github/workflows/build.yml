@@ -60,7 +60,7 @@ jobs:
       - name: Setup build environment
         run: |
           python --version
-          ./bash/dev_build_env_setup.sh
+          ./bash/setup_build_env.sh
 
       - name: 1) Data loading
         run: |

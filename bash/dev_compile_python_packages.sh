@@ -1,5 +1,6 @@
 #!/bin/bash
-# A dev script used to compile python packages from a requirements.in file to a requirements.txt file
+#
+# Dev script to compile python packages from a requirements.in file to a requirements.txt file.
 set -e
 
 # Update and install packages used to compile requirements
