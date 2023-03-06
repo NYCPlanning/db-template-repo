@@ -1,7 +1,7 @@
 # Compare two csvs
 from python.utils import load_csv_file
 
-DATA_DIRECTORY = "data/compare_csvs"
+DATA_DIRECTORY = ".data/compare_csvs"
 MAX_COMPARISON_ROWS = 50
 
 if __name__ == "__main__":
