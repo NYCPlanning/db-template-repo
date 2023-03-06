@@ -4,10 +4,10 @@ source bash/build_config.sh
 echo "Dataset Version $DATASET_VERSION : 01 Data Loading"
 
 # Create a versions table with source dataset versions
-echo "Create versions table ..."
+echo "Create source data versions table ..."
 run_sql_command "
-  DROP TABLE IF EXISTS versions;
-  CREATE TABLE versions (
+  DROP TABLE IF EXISTS source_versions;
+  CREATE TABLE source_versions (
     datasource text,
     version text
   );
@@ -15,7 +15,10 @@ run_sql_command "
 
 # Import data
 echo "Import source data ..."
-import dcp_zoningdistricts
+import_public dcp_zoningdistricts
+import_public dcp_cdboundaries_wi $DCP_CDBOUNDARIES_WI_VERSION
+
+python3 -m python.01_dataloading
 
 # # Delete data cache (optional)
 # echo "Deleting source data cache ..."

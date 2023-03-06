@@ -1,6 +1,13 @@
 #!/bin/bash
 # A collection of utility functions used in build scripts
 
+# Exit when any command fails
+set -e
+# Keep track of the last executed command
+trap 'last_command=$current_command; current_command=$BASH_COMMAND' DEBUG
+# Echo an error message before exiting
+trap 'echo "\"${last_command}\" command filed with exit code $?."' EXIT
+
 # Function to set Environmental Variables
 function set_env {
   for envfile in $@; do
@@ -16,7 +23,7 @@ function set_env {
 
 # Function to run a sql command from a string
 function run_sql_command {
-  psql $BUILD_ENGINE --quiet --command $1
+  psql $BUILD_ENGINE --quiet --command "$1"
 }
 
 # Function to run a sql file
@@ -40,7 +47,7 @@ function urlparse {
 # Function to get authorization levels for each dataset (public read vs private)
 function get_acl {
   local name=$1
-  local version=${2:-latest} #default version to latest
+  local version=$2
   local config_curl=$URL/datasets/$name/$version/config.json
   local statuscode=$(curl --write-out '%{http_code}' --silent --output /dev/null $config_curl)
   if [[ "$statuscode" -ne 200 ]]; then
@@ -58,8 +65,10 @@ function get_version {
   local config_curl=$URL/datasets/$name/$version/config.json
   local config_mc=spaces/edm-recipes/datasets/$name/$version/config.json
   if [ "$acl" != "public-read" ]; then
+    echo "get_version: using non-public read approach ..."
     local version=$(mc cat $config_mc | jq -r '.dataset.version')
   else
+    echo "get_version: using public read approach ..."
     local version=$(curl -sS $config_curl | jq -r '.dataset.version')
   fi
   echo "$version"
@@ -70,22 +79,22 @@ function record_version {
   local datasource="$1"
   local version="$2"
   psql $BUILD_ENGINE -q -c "
-  DELETE FROM versions WHERE datasource = '$datasource';
-  INSERT INTO versions VALUES ('$datasource', '$version');
+  DELETE FROM source_versions WHERE datasource = '$datasource';
+  INSERT INTO source_versions VALUES ('$datasource', '$version');
   "
 }
 
 # Fucntion to check if the data has already been loaded into the database
 function get_existence {
   local name=$1
-  local version=${2:-latest} #default version to latest
+  local version=$2
   existence=$(psql $BUILD_ENGINE -t -c "
     SELECT EXISTS (
       SELECT FROM information_schema.tables 
       WHERE  table_schema = 'public'
       AND    table_name   = '$name'
     ) and EXISTS (
-      SELECT FROM versions
+      SELECT FROM source_versions
       WHERE  datasource = '$name'
       AND    version   = '$version'
     );
@@ -93,33 +102,35 @@ function get_existence {
   echo $existence
 }
 
-# Function to import data directly from Digital Ocean i.e. key function of dataloading
-function import {
-  local name=$1
-  local version=${2:-latest} #default version to latest
-  local acl=$(get_acl $name $version)
-  local version=$(get_version $name $version $acl)
-  local existence=$(get_existence $name $version)
-  local target_dir=$(pwd)/.library/datasets/$name/$version
+function import_public {
+  name=$1
+  version=${2:-latest}
+  local url=$DO_S3_ENDPOINT/edm-recipes
+  local target_data=datasets/$name/$version
+  local target_dir=$(pwd)/.library/$target_data
+  local target_file=$target_dir/$name.sql
+  local download_url=$url/$target_data/$name.sql
+  local config_url=$URL/datasets/$name/$version/config.json
+
   # Download sql dump for the datasets from data library
-  if [ -f $target_dir/$name.sql ]; then
-    echo "✅ $name.sql exists in cache"
+  if [ -f $target_file ]; then
+    echo "✅ $target_data exists in cache"
   else
     echo "🛠 $name.sql doesn't exists in cache, downloading ..."
     mkdir -p $target_dir && (
       cd $target_dir
-      if [ "$acl" != "public-read" ]; then
-        mc cp spaces/edm-recipes/datasets/$name/$version/$name.sql $name.sql
+      echo "try to curl $download_url ..."
+      local statuscode=$(curl --write-out '%{http_code}' --silent --output /dev/null $config_url)
+      echo "statuscode: $statuscode"
+      if [ $statuscode == 000 ]; then
+        curl -ss -O $download_url
       else
-        curl -O $URL/datasets/$name/$version/$name.sql $name.sql
+        unzip $name.sql.zip
       fi
     )
   fi
-  # Loading into Database
-  if [ "$existence" == "t" ]; then
-    echo "NAME: $name VERSION: $version is already loaded in postgres!"
-  else
-    psql $BUILD_ENGINE -f $target_dir/$name.sql
-  fi
-  record_version "$name" "$version"
+
+  # Load into database from download
+  psql $BUILD_ENGINE -v ON_ERROR_STOP=1 -q -f $target_file
+  record_version $name $version
 }
