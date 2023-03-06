@@ -4,6 +4,7 @@ FROM mcr.microsoft.com/devcontainers/python:0-${VARIANT}
 
 RUN export DEBIAN_FRONTEND=noninteractive
 
-# run environment setup script
-COPY . .
+# Run environment setup script
+COPY bash/ bash/
+COPY requirements.txt .
 RUN bash/setup_build_env.sh
