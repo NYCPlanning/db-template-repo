@@ -36,6 +36,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
+      - run: echo "CI envar is $CI"
       - name: Build and run dev container task
         uses: devcontainers/ci@v0.3
         with:
