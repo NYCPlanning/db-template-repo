@@ -69,11 +69,12 @@ jobs:
       - name: 2) Staging
         run: |
           ./bash/02_staging.sh
+
       - name: X) Export for QAQC
         run: |
-          echo "running qaqc export"
+          echo "PLACEHOLDER running qaqc export"
 
       # TODO don't do production export when testing
       - name: X) Export for production
         run: |
-          echo "running production export"
+          echo "PLACEHOLDER running production export"
