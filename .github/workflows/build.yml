@@ -45,9 +45,10 @@ jobs:
           - 5432:5432
     steps:
       - uses: actions/checkout@v3
-      - name: Logging check
+      - name: Inputs check
         run: |
           python --version
+          echo "Hello build note: ${{ inputs.build_note }}"
           echo "Hello logging level: ${{ inputs.logging_level }} (directly from action inputs)"
           echo "Hello logging level: $LOGGING_LEVEL (from envar from action inputs)"
           python -m python.run_logging
@@ -70,11 +71,15 @@ jobs:
         run: |
           ./bash/02_preprocessing.sh
 
-      - name: X) Export for QAQC
+      - name: 3) Build
+        run: |
+          ./bash/03_build.sh
+
+      - name: 4) Export for QAQC
         run: |
           echo "PLACEHOLDER running qaqc export"
 
-      # TODO don't do production export when testing
-      - name: X) Export for production
+      - name: 5) Export for production
+        if: ${{ github.event_name != 'workflow_call' }}
         run: |
           echo "PLACEHOLDER running production export"
