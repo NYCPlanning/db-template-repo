@@ -29,6 +29,17 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
+
+      - name: Setup python
+        uses: actions/setup-python@v4.5.0
+        with:
+          python-version: "3.11"
+
+      - name: Setup build environment
+        run: |
+          python --version
+          ./bash/setup_build_env.sh
+
       - name: Run python tests
         run: |
           python3 -m pytest
