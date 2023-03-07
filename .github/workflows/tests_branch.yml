@@ -7,7 +7,7 @@ on:
 jobs:
   branch_lint:
     name: Linting tests (python files)
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
       - name: setup python
@@ -23,7 +23,7 @@ jobs:
 
   branch_unit_tests:
     name: Unit tests
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
       - name: some tests [PLACEHOLDER]
@@ -33,7 +33,7 @@ jobs:
 
   branch_devcontainer_tests:
     name: Devcontainer tests
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
       - run: echo "CI envar is $CI"
