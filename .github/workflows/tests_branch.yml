@@ -29,10 +29,9 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
-      - name: some tests [PLACEHOLDER]
+      - name: Run python tests
         run: |
-          echo "running tests ..."
-          # TODO add pytest tests
+          python3 -m pytest
 
   branch_dev_container_tests:
     name: Dev container tests
