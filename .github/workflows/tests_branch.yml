@@ -10,15 +10,18 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
-      - name: setup python
+
+      - name: Setup python
         uses: actions/setup-python@v4.5.0
         with:
-          python-version: "3.11.1"
+          python-version: "3.11"
 
-      - name: setup
-        run: pip install black==22.8.0
+      - name: Setup build environment
+        run: |
+          python --version
+          ./bash/setup_build_env.sh
 
-      - name: black linter
+      - name: Run black linter
         run: black --diff --check ./
 
   branch_unit_tests:
