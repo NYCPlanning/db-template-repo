@@ -8,10 +8,19 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"redhat.vscode-yaml",
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				"streetsidesoftware.code-spell-checker",
 				"bierner.markdown-preview-github-styles",
+				"bierner.markdown-mermaid",
+				"DavidAnson.vscode-markdownlint",
+				"yzhang.markdown-all-in-one",
+				"foxundermoon.shell-format",
+				"redhat.vscode-yaml",
 				"bungcip.better-toml",
-				"cschleiden.vscode-github-actions"
+				"bradymholt.pgformatter",
+				"mechatroner.rainbow-csv",
+				"janisdd.vscode-edit-csv"
 			]
 		}
 	},
@@ -20,13 +29,13 @@
 	"forwardPorts": [
 		5432
 	],
+	// Use 'initializeCommand' to run commands on the host machine before the container is created.
+	"initializeCommand": "./bash/setup_devcontainer.sh",
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "pip install --user -r requirements.txt",
 	// "postCreateCommand": "poetry install"
-	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "export PATH=/root/.local/bin:$PATH",
-	// Adding id_rsa so that we can push to github from the dev container
-	"initializeCommand": "ssh-add $HOME/.ssh/id_rsa",
+	// "postCreateCommand": "./bash/install_python_packages.sh",
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
 	// Configure tool-specific properties.

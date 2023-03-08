@@ -1,27 +1,30 @@
 #!/bin/bash
-source bash/config.sh
+#
+# Loads source data files into a local SQL database.
 
-# Run postgres with less output and create a table of versions by dataset
-psql $BUILD_ENGINE --quiet --command "
-  DROP TABLE IF EXISTS versions;
-  CREATE TABLE versions ( 
-    datasource text, 
-    version text 
+source bash/build_config.sh
+
+echo "Dataset Version $DATASET_VERSION : 01 Data Loading"
+
+# Create a table with the versions of source data
+echo "Create source data versions table ..."
+run_sql_command "
+  DROP TABLE IF EXISTS source_versions;
+  CREATE TABLE source_versions (
+    datasource text,
+    version text
   );
 "
 
-#Import Data
-import dcp_mappluto_wi &
+# Import data
+echo "Import source data ..."
+import_public dcp_zoningdistricts
+import_public dcp_cdboundaries_wi $DCP_CDBOUNDARIES_WI_VERSION
 
-# Import GIS Features
-import dcp_commercialoverlay &
-import dcp_limitedheight &
-import dcp_specialpurpose &
-import dcp_specialpurposesubdistricts &
-import dcp_zoningmapamendments &
-import dcp_zoningdistricts &
-import dcp_zoningmapindex &
-wait
+python3 -m python.01_dataloading
 
-# # Delete data cache
+# # Delete data cache (optional)
+# echo "Deleting source data cache ..."
 # rm -rf .library
+
+echo "Done!"
