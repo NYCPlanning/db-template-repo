@@ -1,5 +1,6 @@
 import os
 import pandas as pd
+import geopandas as gpd
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import Session
 
@@ -8,6 +9,13 @@ SQL_FILE_DIRECTORY = "sql"
 
 def load_csv_file(directory: str, filename: str) -> pd.DataFrame:
     data = pd.read_csv(f"{directory}/{filename}")
+    data.columns = data.columns.str.lower()
+
+    return data
+
+
+def load_shapefile(directory: str, filename: str) -> gpd.GeoDataFrame:
+    data = gpd.read_file(f"{directory}/{filename}")
     data.columns = data.columns.str.lower()
 
     return data
