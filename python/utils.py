@@ -1,12 +1,13 @@
 import os
-import pandas as pd
-import geopandas as gpd
+
 import contextily as cx
-from matplotlib.axes import Axes
+import geopandas as gpd
+import pandas as pd
 from folium.folium import Map
-from xyzservices import TileProvider
+from matplotlib.axes import Axes
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import Session
+from xyzservices import TileProvider
 
 SQL_FILE_DIRECTORY = "sql"
 NYC_PROJECTION = "EPSG:2263"
