@@ -17,6 +17,8 @@ backcall==0.2.0
     # via ipython
 black==23.1.0
     # via -r requirements.in
+branca==0.6.0
+    # via folium
 certifi==2022.12.7
     # via
     #   fiona
@@ -57,6 +59,8 @@ executing==1.2.0
     # via stack-data
 fiona==1.9.2
     # via geopandas
+folium==0.14.0
+    # via -r requirements.in
 fonttools==4.39.2
     # via matplotlib
 geographiclib==2.0
@@ -79,8 +83,14 @@ jedi==0.18.2
     # via ipython
 jellyfish==0.6.1
     # via us
+jinja2==3.1.2
+    # via
+    #   branca
+    #   folium
 joblib==1.2.0
-    # via contextily
+    # via
+    #   contextily
+    #   scikit-learn
 jupyter-client==8.1.0
     # via ipykernel
 jupyter-core==5.3.0
@@ -89,8 +99,14 @@ jupyter-core==5.3.0
     #   jupyter-client
 kiwisolver==1.4.4
     # via matplotlib
+mapclassify==2.5.0
+    # via -r requirements.in
+markupsafe==2.1.2
+    # via jinja2
 matplotlib==3.7.1
-    # via contextily
+    # via
+    #   -r requirements.in
+    #   contextily
 matplotlib-inline==0.1.6
     # via
     #   ipykernel
@@ -103,12 +119,18 @@ mypy-extensions==1.0.0
     # via black
 nest-asyncio==1.5.6
     # via ipykernel
+networkx==3.0
+    # via mapclassify
 numpy==1.24.2
     # via
     #   contourpy
+    #   folium
+    #   mapclassify
     #   matplotlib
     #   pandas
     #   rasterio
+    #   scikit-learn
+    #   scipy
     #   shapely
     #   snuggs
 packaging==23.0
@@ -122,6 +144,7 @@ pandas==1.5.3
     # via
     #   -r requirements.in
     #   geopandas
+    #   mapclassify
 parso==0.8.3
     # via jedi
 pathspec==0.11.1
@@ -174,7 +197,15 @@ pyzmq==25.0.2
 rasterio==1.3.6
     # via contextily
 requests==2.28.2
-    # via contextily
+    # via
+    #   contextily
+    #   folium
+scikit-learn==1.2.2
+    # via mapclassify
+scipy==1.10.1
+    # via
+    #   mapclassify
+    #   scikit-learn
 shapely==2.0.1
     # via geopandas
 six==1.16.0
@@ -189,6 +220,8 @@ stack-data==0.6.2
     # via ipython
 tabulate==0.9.0
     # via -r requirements.in
+threadpoolctl==3.1.0
+    # via scikit-learn
 tornado==6.2
     # via
     #   ipykernel
