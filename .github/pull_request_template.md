@@ -1,6 +1,6 @@
 ## motivations
 
-- resolves issue #ISSUE_NUMBER
+- closes #ISSUE_NUMBER
 - ...
 
 ## changes
