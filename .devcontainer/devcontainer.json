@@ -2,7 +2,7 @@
 // For config options, see the README at:
 // https://github.com/devcontainers/templates/tree/main/src/postgres
 {
-	"name": "db-template-repo (Python 3.11, PostgreSQL)",
+	"name": "db-template-repo (Python 3.11.2, PostgreSQL)",
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "runner",
 	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
