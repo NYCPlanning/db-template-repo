@@ -9,7 +9,7 @@ python3 -m pip install --upgrade pip
 python3 -m pip install --upgrade pip-tools wheel
 
 echo -e "🛠 deleting requirements.txt"
-# Delete exisitng requirements file to ensure full dependency resolution
+# Delete existing requirements file to ensure full dependency resolution
 rm --force requirements.txt
 
 # Compile requirements
