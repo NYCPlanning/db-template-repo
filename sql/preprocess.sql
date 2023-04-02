@@ -2,4 +2,3 @@
 DROP TABLE IF EXISTS _dcp_zoningdistricts;
 
 CREATE TABLE _dcp_zoningdistricts AS TABLE dcp_zoningdistricts;
-
