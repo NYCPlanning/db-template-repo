@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Sets up enviroment for running build scripts in either local devcontainer or github action.
+# Sets up environment for running build scripts in either local devcontainer or github action.
 set -e
 
 sudo apt-get update
