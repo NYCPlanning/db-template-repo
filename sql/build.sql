@@ -1,19 +1,9 @@
 ALTER TABLE _dcp_zoningdistricts ADD new_build_column text;
 
-DROP TABLE IF EXISTS geo_rejects;
+DROP TABLE IF EXISTS validzones;
 
-CREATE TABLE geo_rejects AS (
-    SELECT
-        unique_id,
-        address,
-        street_name,
-        between_cross_street_1,
-        and_cross_street_2,
-        borough,
-        geo_message
-    FROM
-        _cbbr_submissions
-    WHERE
-        (address != ' ' OR street_name != ' ')
-        AND geom IS NULL
-);
+CREATE TABLE validzones AS (
+SELECT a.zonedist, ST_MakeValid(a.geom) as geom  
+FROM _dcp_zoningdistricts a
+WHERE ST_GeometryType(ST_MakeValid(a.geom)) = 'ST_MultiPolygon');
+CREATE INDEX validzones_geom_idx ON validzones USING GIST (geom gist_geometry_ops_2d);
