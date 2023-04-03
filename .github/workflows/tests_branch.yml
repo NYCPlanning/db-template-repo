@@ -9,15 +9,15 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Setup python
-        uses: actions/setup-python@v4.5.0
-        with:
-          python-version: 3.11.2
+      # - name: Setup python
+      #   uses: actions/setup-python@v4.5.0
+      #   with:
+      #     python-version: 3.11.2
 
-      - name: Setup build environment
-        run: |
-          python --version
-          ./bash/setup_build_env.sh
+      # - name: Setup build environment
+      #   run: |
+      #     python --version
+      #     ./bash/setup_build_env.sh
 
       - name: Run truck linter
         uses: trunk-io/trunk-action@v1
