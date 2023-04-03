@@ -2,4 +2,4 @@
 DROP TABLE IF EXISTS _dcp_zoningdistricts;
 
 CREATE TABLE _dcp_zoningdistricts AS TABLE dcp_zoningdistricts;
-ALTER TABLE _dcp_zoningdistricts RENAME wkb_geometry to geom;
+ALTER TABLE _dcp_zoningdistricts RENAME wkb_geometry TO geom;
