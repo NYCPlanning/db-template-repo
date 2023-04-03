@@ -1,9 +1,10 @@
 import os
+
 import pandas as pd
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import Session
 
-SQL_FILE_DIRECTORY = 'sql'
+SQL_FILE_DIRECTORY = "sql"
 
 
 def load_csv_file(directory: str, filename: str) -> pd.DataFrame:
