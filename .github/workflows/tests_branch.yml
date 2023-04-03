@@ -25,8 +25,8 @@ jobs:
 
       - name: Run truck linter
         uses: trunk-io/trunk-action@v1
-        # with:
-        #   check-mode: all
+        with:
+          check-mode: all
 
   branch_unit_tests:
     name: Unit tests
@@ -60,7 +60,7 @@ jobs:
           runCmd: pip list
 
   branch_build_tests:
-    name: Build tests
+    name: Build test run
     uses: ./.github/workflows/build.yml
     with:
       logging_level: DEBUG
