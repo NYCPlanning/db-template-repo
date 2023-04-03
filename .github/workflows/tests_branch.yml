@@ -24,7 +24,7 @@ jobs:
           ./bash/setup_build_env.sh
 
       - name: Run truck linter
-        uses: trunk-io/trunk-action@v1
+        uses: trunk-io/trunk-action@v1.0.8
         with:
           check-mode: all
 
