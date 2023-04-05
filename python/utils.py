@@ -12,6 +12,12 @@ def load_csv_file(directory: str, filename: str) -> pd.DataFrame:
 
     return data
 
+def load_json_file(directory: str, filename: str) -> pd.DataFrame:
+    data = pd.read_json(f"{directory}/{filename}")
+    data.columns = data.columns.str.lower()
+
+    return data
+
 
 def execute_sql_command(command: str) -> None:
     sql_engine = create_engine(os.environ["BUILD_ENGINE"])
