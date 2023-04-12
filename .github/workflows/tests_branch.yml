@@ -1,12 +1,14 @@
 name: Branch tests
 
-on:
-  push:
-  workflow_dispatch:
+on: [pull_request, workflow_dispatch]
+
+concurrency:
+  group: ${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
 
 jobs:
   branch_lint:
-    name: Linting tests (python files)
+    name: Linting tests
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
@@ -14,15 +16,17 @@ jobs:
       - name: Setup python
         uses: actions/setup-python@v4.5.0
         with:
-          python-version: "3.11"
+          python-version: 3.11.2
 
       - name: Setup build environment
         run: |
           python --version
           ./bash/setup_build_env.sh
 
-      - name: Run black linter
-        run: black --diff --check ./
+      - name: Run truck linter
+        uses: trunk-io/trunk-action@v1.0.8
+        with:
+          arguments: --no-fix --no-progress
 
   branch_unit_tests:
     name: Unit tests
@@ -33,7 +37,7 @@ jobs:
       - name: Setup python
         uses: actions/setup-python@v4.5.0
         with:
-          python-version: "3.11"
+          python-version: 3.11.2
 
       - name: Setup build environment
         run: |
@@ -56,8 +60,8 @@ jobs:
           runCmd: pip list
 
   branch_build_tests:
-    name: Build tests
+    name: Build test run
     uses: ./.github/workflows/build.yml
     with:
-      logging_level: "DEBUG"
+      logging_level: DEBUG
     secrets: inherit
