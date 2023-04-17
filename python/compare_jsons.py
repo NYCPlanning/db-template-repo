@@ -100,7 +100,6 @@ def normalize_data(data: pd.DataFrame) -> pd.DataFrame:
     data = data.infer_objects()
     for column in data.columns:
         column_type = data[column].dtype
-        # print(f"Column {column} has dtype {column_type}")
         if isinstance(column_type, object) and isinstance(data[column].iloc[0], str):
             print(f"Normalized string column {column}")
             data[column] = data[column].str.lower()
