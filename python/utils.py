@@ -13,6 +13,7 @@ def load_csv_file(directory: str, filename: str) -> pd.DataFrame:
 
     return data
 
+
 def load_json_file(directory: str, filename: str) -> pd.DataFrame:
     data = pd.read_json(f"{directory}/{filename}")
     data.columns = data.columns.str.lower()

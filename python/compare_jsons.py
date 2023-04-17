@@ -18,7 +18,6 @@ def compare_data(old_data: pd.DataFrame, new_data: pd.DataFrame) -> None:
     new_data.info()
     print(new_data.head().to_markdown())
 
-
     compare_result = old_data.compare(new_data, align_axis=0, keep_equal=True)
     rows_with_diff_count = len(compare_result) // 2
 
@@ -96,6 +95,7 @@ def show_data_with_unique_indices(
     print("Unique rows in NEW DATA")
     print(new_data[new_data[index_column].isin(unique_indices_from_new)].to_markdown())
 
+
 def normalize_data(data: pd.DataFrame) -> pd.DataFrame:
     data = data.infer_objects()
     for column in data.columns:
@@ -107,12 +107,13 @@ def normalize_data(data: pd.DataFrame) -> pd.DataFrame:
         elif isinstance(column_type, object) and isinstance(data[column].iloc[0], list):
             data[column] = data[column].apply(tuple)
             print(f"Normalized list column {column}")
-    
+
     return data
+
 
 if __name__ == "__main__":
     print("loading jsons ...")
-    pd.set_option('display.max_rows', MAX_COMPARISON_ROWS)
+    pd.set_option("display.max_rows", MAX_COMPARISON_ROWS)
     old_data_raw = load_json_file(
         directory=DATA_DIRECTORY,
         filename="pff_metadata_2020.json",
