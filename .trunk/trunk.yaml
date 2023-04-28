@@ -1,15 +1,16 @@
 version: 0.1
 cli:
-  version: 1.7.0
+  version: 1.7.1-beta.9
 plugins:
   sources:
     - id: trunk
-      ref: v0.0.14
+      ref: v0.0.16
       uri: https://github.com/trunk-io/plugins
 lint:
   enabled:
     - actionlint@1.6.23
-    - black@23.3.0
+    - black@23.3.0:
+        commands: [lint, fix]
     - codespell@2.2.4
     - dotenv-linter@3.3.0
     - git-diff-check
@@ -29,7 +30,6 @@ runtimes:
     - python@3.10.8
 actions:
   disabled:
-    - trunk-announce
     - trunk-check-pre-push
     - trunk-fmt-pre-commit
   enabled:
