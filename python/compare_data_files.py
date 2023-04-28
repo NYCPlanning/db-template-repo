@@ -6,6 +6,7 @@ from python.utils import load_data_file
 DATA_DIRECTORY = ".data/compare_jsons"
 OLD_DATA_PATH = f"{DATA_DIRECTORY}/pff_metadata_2020.json"
 NEW_DATA_PATH = f"{DATA_DIRECTORY}/pff_metadata_2021.json"
+OUTPUT_FILE_PATH = f"{DATA_DIRECTORY}/compare_result.csv"
 
 MAX_COMPARISON_ROWS = 100
 NORMALIZE_VALUES = True
@@ -39,7 +40,7 @@ def compare_data(old_data: pd.DataFrame, new_data: pd.DataFrame) -> None:
             compare_result.index.set_levels(["old_data", "new_data"], level=1)
         )
         print("exporting comparison results to csv\n")
-        compare_result.to_csv(f"{DATA_DIRECTORY}/compare_result.csv")
+        compare_result.to_csv(OUTPUT_FILE_PATH)
         print(f"showing first {MAX_COMPARISON_ROWS} rows of comparison results\n")
         print(compare_result.head(MAX_COMPARISON_ROWS))
 
