@@ -8,13 +8,13 @@ TEST_DATA_PATH = "tests/test_data"
 
 
 def test_load_data_file_csv():
-    data = load_data_file(filepath=f"{TEST_DATA_PATH}/compare_data_a.csv")
+    data = load_data_file(filepath=f"{TEST_DATA_PATH}/minimal_data.csv")
     assert isinstance(data, pd.DataFrame)
     assert len(data) == 3
 
 
 def test_load_data_file_json():
-    data = load_data_file(filepath=f"{TEST_DATA_PATH}/compare_data_a.json")
+    data = load_data_file(filepath=f"{TEST_DATA_PATH}/minimal_data.json")
     assert isinstance(data, pd.DataFrame)
     assert len(data) == 2
 
