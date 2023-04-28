@@ -1,4 +1,4 @@
-# Compare two json files
+# Compare two data files
 import pandas as pd
 
 from python.utils import load_data_file
