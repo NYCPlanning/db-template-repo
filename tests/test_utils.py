@@ -1,7 +1,7 @@
 # test python utilities
 import pytest
-from python.utils import load_data_file
 
+from python.utils import load_data_file
 
 # def test_always_passes():
 #     assert True
