@@ -1,7 +1,7 @@
 # Compare two json files
 import pandas as pd
 
-from python.utils import load_json_file
+from python.utils import load_data_file
 
 DATA_DIRECTORY = ".data/compare_jsons"
 MAX_COMPARISON_ROWS = 100
@@ -113,14 +113,10 @@ def normalize_data(data: pd.DataFrame) -> pd.DataFrame:
 if __name__ == "__main__":
     print("loading data ...")
     pd.set_option("display.max_rows", MAX_COMPARISON_ROWS)
-    old_data_raw = load_json_file(
-        directory=DATA_DIRECTORY,
-        filename="pff_metadata_2020.json",
-    )
-    new_data_raw = load_json_file(
-        directory=DATA_DIRECTORY,
-        filename="pff_metadata_2021.json",
-    )
+    old_data_raw = load_data_file(filepath=f"{DATA_DIRECTORY}/pff_metadata_2020.json")
+    old_data_raw.columns = old_data_raw.columns.str.lower()
+    new_data_raw = load_data_file(filepath=f"{DATA_DIRECTORY}/pff_metadata_2021.json")
+    new_data_raw.columns = new_data_raw.columns.str.lower()
 
     # confirm chosen index column is unique in both datasets
     for data in [old_data_raw, new_data_raw]:
