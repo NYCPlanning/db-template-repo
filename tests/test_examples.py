@@ -62,9 +62,6 @@ def test_parametrize_complex(test_input, expected):
     assert eval(test_input) == expected
 
 
-
-
-
 def test_raises_error():
     with pytest.raises(KeyError):
         raise KeyError
