@@ -18,6 +18,10 @@ def test_skip_failing_test():
 def test_expect_failing_test():
     assert False
 
+@pytest.mark.slow_test()
+def test_slow_test():
+    # can be skipped via pytest ... -m "not slow_test"
+    assert True
 
 @pytest.mark.parametrize("test_input", [0, 1])
 def test_parametrize_input(test_input):
@@ -33,6 +37,12 @@ def test_parametrize_input(test_input):
 )
 def test_parametrize_input_expected(test_input, expected):
     assert test_input * 2 == expected
+
+
+@pytest.mark.parametrize("x", [0, 1])
+@pytest.mark.parametrize("y", [2, 3])
+def test_parametrize_all_combinations(x, y):
+    assert x * y <= 6
 
 
 @pytest.mark.parametrize(
@@ -52,12 +62,20 @@ def test_parametrize_complex(test_input, expected):
     assert eval(test_input) == expected
 
 
-@pytest.mark.parametrize("x", [0, 1])
-@pytest.mark.parametrize("y", [2, 3])
-def test_parametrize_all_combinations(x, y):
-    pass
 
 
-@pytest.mark.slow_test()
-def test_slow_test():
-    assert True
+
+def test_raises_error():
+    with pytest.raises(KeyError):
+        raise KeyError
+
+    with pytest.raises(NotImplementedError, match="this specifically is not implemented"):
+        raise NotImplementedError("this specifically is not implemented")
+
+    with pytest.raises(NotImplementedError, match=r"specifically"):
+        raise NotImplementedError("this specifically is not implemented right now")
+
+    with pytest.raises(ValueError) as exc_info:
+        raise ValueError("value must be 42")
+    assert exc_info.type is ValueError
+    assert exc_info.value.args[0] == "value must be 42"
