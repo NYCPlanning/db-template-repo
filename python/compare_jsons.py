@@ -111,7 +111,7 @@ def normalize_data(data: pd.DataFrame) -> pd.DataFrame:
 
 
 if __name__ == "__main__":
-    print("loading jsons ...")
+    print("loading data ...")
     pd.set_option("display.max_rows", MAX_COMPARISON_ROWS)
     old_data_raw = load_json_file(
         directory=DATA_DIRECTORY,
