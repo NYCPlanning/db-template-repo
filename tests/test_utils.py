@@ -1,6 +1,6 @@
 # test python utilities
-import pytest
 import pandas as pd
+import pytest
 
 from python.utils import load_data_file
 
