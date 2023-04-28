@@ -24,7 +24,8 @@ jobs:
           ./bash/setup_build_env.sh
 
       - name: Run truck linter
-        uses: trunk-io/trunk-action@v1.0.8
+        uses: trunk-io/trunk-action/action.yml@main
+        # uses: trunk-io/trunk-action@v1.0.8
         with:
           arguments: --no-fix --no-progress
 
