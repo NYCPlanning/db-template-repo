@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 
 import pandas as pd
 from sqlalchemy import create_engine, text
@@ -7,9 +8,14 @@ from sqlalchemy.orm import Session
 SQL_FILE_DIRECTORY = "sql"
 
 
-def load_csv_file(directory: str, filename: str) -> pd.DataFrame:
-    data = pd.read_csv(f"{directory}/{filename}")
-    data.columns = data.columns.str.lower()
+def load_data_file(filepath: str) -> pd.DataFrame:
+    file_extension = Path(filepath).suffix
+    if file_extension == ".csv":
+        data = pd.read_csv(filepath)
+    elif file_extension == ".json":
+        data = pd.read_json(filepath)
+    else:
+        raise NotImplementedError(f"Unsopported data file extension: {file_extension}")
 
     return data
 
