@@ -30,6 +30,7 @@ def load_data_file(filepath: str) -> pd.DataFrame:
         data = pd.read_json(filepath)
     else:
         raise NotImplementedError(f"Unsopported data file extension: {file_extension}")
+    return data
 
 
 def load_shapefile(directory: str, filename: str) -> gpd.GeoDataFrame:
