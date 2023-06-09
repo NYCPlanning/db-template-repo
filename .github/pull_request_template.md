@@ -1,6 +1,6 @@
 ## motivations
 
-- closes #ISSUE_NUMBER
+- resolves #ISSUE_NUMBER
 - ...
 
 ## changes
@@ -11,6 +11,6 @@
 
 - ...
 
-## todo
+## todos
 
 - [ ] ...

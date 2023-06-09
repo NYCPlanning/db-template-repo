@@ -2,6 +2,7 @@
 #
 # Dev script to compile python packages from a requirements.in file to a requirements.txt file.
 set -e
+RELATIVE_SCRIPTPATH=$(realpath --relative-to="${PWD}" "$0")
 
 # Update and install packages used to compile requirements
 echo -e "🛠 upgrading python package management tools"
@@ -14,5 +15,5 @@ rm --force requirements.txt
 
 # Compile requirements
 echo -e "🛠 compiling requirements.txt"
-CUSTOM_COMPILE_COMMAND="./bash/dev_python_packages.sh" python3 -m piptools compile --output-file=requirements.txt requirements.in
+CUSTOM_COMPILE_COMMAND="./${RELATIVE_SCRIPTPATH}" python3 -m piptools compile --output-file=requirements.txt requirements.in
 echo -e "✅ done compiling requirements.txt"

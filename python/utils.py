@@ -2,6 +2,8 @@ import os
 
 import contextily as cx
 import geopandas as gpd
+from pathlib import Path
+
 import pandas as pd
 from folium.folium import Map
 from matplotlib.axes import Axes
@@ -20,8 +22,14 @@ DEFAULT_MAP_CONFIG = {
 }
 
 
-def load_csv_file(directory: str, filename: str) -> pd.DataFrame:
-    return pd.read_csv(f"{directory}/{filename}")
+def load_data_file(filepath: str) -> pd.DataFrame:
+    file_extension = Path(filepath).suffix
+    if file_extension == ".csv":
+        data = pd.read_csv(filepath)
+    elif file_extension == ".json":
+        data = pd.read_json(filepath)
+    else:
+        raise NotImplementedError(f"Unsopported data file extension: {file_extension}")
 
 
 def load_shapefile(directory: str, filename: str) -> gpd.GeoDataFrame:

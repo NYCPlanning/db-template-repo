@@ -8,6 +8,7 @@ matplotlib==3.7.1
 pandas==1.5.3
 psycopg2-binary==2.9.5
 pytest==7.2.2
+pytest-cov==4.0.0
 sqlalchemy==2.0.5
 tabulate==0.9.0
 us==2.0.2
