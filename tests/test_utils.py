@@ -2,11 +2,7 @@ import geopandas as gpd
 import pandas as pd
 import pytest
 
-from python.utils import (
-    load_data_file,
-    load_geodata_url,
-    load_shapefile,
-)
+from python.utils import load_data_file, load_geodata_url, load_shapefile
 
 TEST_DATA_PATH = "tests/test_data"
 

@@ -1,14 +1,13 @@
 import geopandas as gpd
 import pytest
 
-from python.utils import load_data_file
 from python.geospatial import (
     NYC_PROJECTION,
     WKT_PROJECTION,
     convert_to_geodata,
     reporject_geometry,
 )
-
+from python.utils import load_data_file
 
 TEST_DATA_PATH = "tests/test_data"
 

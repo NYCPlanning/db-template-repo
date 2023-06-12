@@ -1,12 +1,9 @@
-import pandas as pd
-import geopandas as gpd
 import contextily as cx
-from matplotlib.axes import Axes
+import geopandas as gpd
+import pandas as pd
 from folium.folium import Map, TileLayer
-
-# from shapely import wkt
+from matplotlib.axes import Axes
 from xyzservices import TileProvider
-
 
 NYC_PROJECTION = "EPSG:2263"
 WKT_PROJECTION = "EPSG:4326"
