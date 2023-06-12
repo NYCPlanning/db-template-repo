@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 
+import geopandas as gpd
 import pandas as pd
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import Session
@@ -16,8 +17,15 @@ def load_data_file(filepath: str) -> pd.DataFrame:
         data = pd.read_json(filepath)
     else:
         raise NotImplementedError(f"Unsopported data file extension: {file_extension}")
-
     return data
+
+
+def load_shapefile(filepath: str) -> gpd.GeoDataFrame:
+    return gpd.read_file(filepath)
+
+
+def load_geodata_url(url: str) -> gpd.GeoDataFrame:
+    return gpd.read_file(url)
 
 
 def execute_sql_command(command: str) -> None:
