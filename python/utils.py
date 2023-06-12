@@ -66,7 +66,9 @@ def reporject_geometry(
     data: gpd.GeoDataFrame, old_projection: str, new_projection: str
 ) -> gpd.GeoDataFrame:
     if not data.crs:
-        print(f"GeoDataFrame has no CRS set. assigning declared old projection of {old_projection} ...")
+        print(
+            f"GeoDataFrame has no CRS set. assigning declared old projection of {old_projection} ..."
+        )
         data.set_crs(old_projection, inplace=True)
     print(f"reporjecting from {old_projection} to {new_projection} ...")
     data.to_crs(new_projection, inplace=True)
@@ -156,8 +158,7 @@ def map_simple(
 
 
 def map_folium(
-    data: gpd.GeoDataFrame,
-    map_config: dict = DEFAULT_FOLIUM_MAP_CONFIG,
+    data: gpd.GeoDataFrame, map_config: dict = DEFAULT_FOLIUM_MAP_CONFIG
 ) -> Map:
     # GeoDataFrame.explore fails if any columns have a dtype of object
     for column in data.columns:
