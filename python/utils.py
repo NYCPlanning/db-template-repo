@@ -25,7 +25,6 @@ DEFAULT_MAP_CONFIG = {
 
 def load_data_file(filepath: str) -> pd.DataFrame:
     file_extension = Path(filepath).suffix
-    gpd.GeoDataFrame()
     if file_extension == ".csv":
         data = pd.read_csv(filepath)
     elif file_extension == ".json":
@@ -35,28 +34,39 @@ def load_data_file(filepath: str) -> pd.DataFrame:
     return data
 
 
-def load_shapefile(directory: str, filename: str) -> gpd.GeoDataFrame:
-    return gpd.read_file(f"{directory}/{filename}")
+def load_shapefile(filepath: str) -> gpd.GeoDataFrame:
+    return gpd.read_file(filepath)
 
-def load_geodata_csv(filepath: str, geometry_column: str = "geometry") -> gpd.GeoDataFrame:
-    # geography = load_data_file(filepath).dropna(subset=geomtry_column)
-    geography[geometry_column] = gpd.GeoSeries.from_wkt(geography[geometry_column])
-    geography = gpd.GeoDataFrame(geography, crs=NYC_PROJECTION)
-
-    return geography
 
 def load_geodata_url(url: str) -> gpd.GeoDataFrame:
     return gpd.read_file(url)
 
-def reporject_geometry(data: gpd.GeoDataFrame, old_projection:str, new_projection:str) -> gpd.GeoDataFrame:
+
+def convert_to_geodata(
+    data: pd.DataFrame,
+    geometry_column: str = "geometry",
+    projection: str = WKT_PROJECTION,
+) -> gpd.GeoDataFrame:
+    data[geometry_column] = gpd.GeoSeries.from_wkt(data[geometry_column])
+    data = gpd.GeoDataFrame(data, crs=projection)
+
+    return data
+
+
+def reporject_geometry(
+    data: gpd.GeoDataFrame, old_projection: str, new_projection: str
+) -> gpd.GeoDataFrame:
     if not data.crs:
-        print(f"assigning old projection {old_projection} due to lack of assignment ...")
+        print(f"assigning old projection {old_projection} to the GeoDataFrame ...")
         data.set_crs(old_projection, inplace=True)
     print(f"reporjecting from {old_projection} to {new_projection} ...")
     data.to_crs(new_projection, inplace=True)
     if data.crs != new_projection:
-        raise RuntimeError(f"Actual new projection {data.crs} is not the expected {new_projection}")
+        raise RuntimeError(
+            f"Actual new projection {data.crs} is not the expected {new_projection}"
+        )
     return data
+
 
 def execute_sql_command(command: str) -> None:
     sql_engine = create_engine(os.environ["BUILD_ENGINE"])
@@ -143,6 +153,6 @@ def map_folium(data: gpd.GeoDataFrame, **kwargs) -> Map:
             data[column] = data[column].astype(str)
 
     map_figure = data.explore(**kwargs)
-    TileLayer('cartodbdark_matter').add_to(map_figure)
+    TileLayer("cartodbdark_matter").add_to(map_figure)
 
     return map_figure
