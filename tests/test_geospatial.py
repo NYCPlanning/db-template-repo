@@ -5,7 +5,7 @@ from python.geospatial import (
     NYC_PROJECTION,
     WKT_PROJECTION,
     convert_to_geodata,
-    reporject_geometry,
+    reproject_geometry,
 )
 from python.utils import load_data_file
 
@@ -22,5 +22,5 @@ def test_convert_to_geodata():
 def test_reporject_geometry():
     data = load_data_file(filepath=f"{TEST_DATA_PATH}/census_counties_nyc.csv")
     data = convert_to_geodata(data)
-    data = reporject_geometry(data, WKT_PROJECTION, NYC_PROJECTION)
+    data = reproject_geometry(data, WKT_PROJECTION, NYC_PROJECTION)
     assert data.crs == NYC_PROJECTION

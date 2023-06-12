@@ -35,7 +35,7 @@ def convert_to_geodata(
     return data
 
 
-def reporject_geometry(
+def reproject_geometry(
     data: gpd.GeoDataFrame, old_projection: str, new_projection: str
 ) -> gpd.GeoDataFrame:
     if not data.crs:
