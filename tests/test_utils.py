@@ -47,17 +47,18 @@ def test_load_geodata_url():
     assert len(data) == 325
 
 
-
 @pytest.mark.skip(reason="result is 'Killed' due to large file")
 def test_load_shapefile_large():
     geography = load_shapefile("./.data/dev_db", "housing.shp.zip")
     assert len(geography) > 1
+
 
 def test_convert_to_geodata():
     data = load_data_file(filepath=f"{TEST_DATA_PATH}/census_counties_nyc.csv")
     data = convert_to_geodata(data)
     assert isinstance(data, gpd.GeoDataFrame)
     assert data.crs == WKT_PROJECTION
+
 
 def test_reporject_geometry():
     data = load_data_file(filepath=f"{TEST_DATA_PATH}/census_counties_nyc.csv")
