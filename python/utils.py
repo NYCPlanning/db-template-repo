@@ -12,14 +12,23 @@ from sqlalchemy.orm import Session
 from xyzservices import TileProvider
 
 SQL_FILE_DIRECTORY = "sql"
+
 NYC_PROJECTION = "EPSG:2263"
 WKT_PROJECTION = "EPSG:4326"
+
 DEFAULT_BASEMAP = cx.providers.Stamen.Terrain
-DEFAULT_MAP_CONFIG = {
+DEFAULT_MATPLOTLIB_MAP_CONFIG = {
     "figsize": (10, 10),
     "alpha": 0.5,
     "edgecolor": "g",
     "linewidths": 3,
+}
+DEFAULT_FOLIUM_MAP_CONFIG = {
+    "tiles": "CartoDB positron",
+    "color": "green",
+    "style_kwds": {
+        "weight": 4,
+    },
 }
 
 
@@ -57,7 +66,7 @@ def reporject_geometry(
     data: gpd.GeoDataFrame, old_projection: str, new_projection: str
 ) -> gpd.GeoDataFrame:
     if not data.crs:
-        print(f"assigning old projection {old_projection} to the GeoDataFrame ...")
+        print(f"GeoDataFrame has no CRS set. assigning declared old projection of {old_projection} ...")
         data.set_crs(old_projection, inplace=True)
     print(f"reporjecting from {old_projection} to {new_projection} ...")
     data.to_crs(new_projection, inplace=True)
@@ -131,10 +140,10 @@ def map_simple(
     data: gpd.GeoDataFrame,
     projection: str = NYC_PROJECTION,
     basemap: str | TileProvider = DEFAULT_BASEMAP,
-    **kwargs,
+    map_config: dict = DEFAULT_MATPLOTLIB_MAP_CONFIG,
 ) -> Axes:
     axes = data.plot(
-        **kwargs,
+        **map_config,
     )
     cx.add_basemap(
         axes,
@@ -146,13 +155,15 @@ def map_simple(
     return axes
 
 
-def map_folium(data: gpd.GeoDataFrame, **kwargs) -> Map:
+def map_folium(
+    data: gpd.GeoDataFrame,
+    map_config: dict = DEFAULT_FOLIUM_MAP_CONFIG,
+) -> Map:
     # GeoDataFrame.explore fails if any columns have a dtype of object
     for column in data.columns:
         if isinstance(column, object) and column != "geometry":
             data[column] = data[column].astype(str)
 
-    map_figure = data.explore(**kwargs)
-    TileLayer("cartodbdark_matter").add_to(map_figure)
+    map_figure = data.explore(**map_config)
 
     return map_figure
