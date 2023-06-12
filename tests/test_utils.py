@@ -1,16 +1,16 @@
 # test python utilities
-import pytest
-import pandas as pd
 import geopandas as gpd
+import pandas as pd
+import pytest
 
 from python.utils import (
-    load_data_file,
-    load_shapefile,
-    load_geodata_url,
-    convert_to_geodata,
-    reporject_geometry,
-    WKT_PROJECTION,
     NYC_PROJECTION,
+    WKT_PROJECTION,
+    convert_to_geodata,
+    load_data_file,
+    load_geodata_url,
+    load_shapefile,
+    reporject_geometry,
 )
 
 TEST_DATA_PATH = "tests/test_data"
