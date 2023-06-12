@@ -2,7 +2,7 @@
 import pandas as pd
 import pytest
 
-from python.utils import load_data_file
+from python.utils import load_data_file, load_shapefile
 
 TEST_DATA_PATH = "tests/test_data"
 
@@ -20,6 +20,14 @@ def test_load_data_file_json():
     assert len(data) == 2
     assert data.iloc[1]["key_int"] == 300
 
-def test_load_data_file_other():
+
+def test_load_data_file_not_implemented():
     with pytest.raises(NotImplementedError):
         load_data_file(filepath=f"{TEST_DATA_PATH}/data_file.parquet")
+
+@pytest.mark.skip(reason="result is 'Killed' due to large file")
+def test_load_shapefile_large():
+    geography = load_shapefile("./.data/dev_db", "housing.shp.zip")
+
+    print(type(housing))
+    assert len(geography) > 1
